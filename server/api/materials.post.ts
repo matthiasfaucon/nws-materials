@@ -1,0 +1,16 @@
+import { PrismaClient } from '@prisma/client'
+// import { defineEventHandler } from 'h3'
+const prisma = new PrismaClient()
+import { faker } from '@faker-js/faker';
+
+export default defineEventHandler(async (event) => {
+    const { denomination, quantite } = await readBody(event)
+    const result = await prisma.materials.create({
+        data: {
+            denomination: denomination,
+            quantite: quantite
+        }
+    })
+    return result
+})
+

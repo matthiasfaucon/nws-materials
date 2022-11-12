@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model Users {
+  id        Int       @id @default(autoincrement())
+  nom       String    @db.VarChar(255)
+  prenom    String    @db.VarChar(255)
+  email     String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Rentals   Rentals[]
+}
+
+model Materials {
+  id           Int          @id @default(autoincrement())
+  denomination String?       @unique
+  quantite     Int?
+  availability Availability? @default(AVAILABLE)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  Rentals      Rentals[]
+}
+
+model Rentals {
+  id              Int       @id @default(autoincrement())
+  user            Users     @relation(fields: [userId], references: [id])
+  userId          Int
+  materials       Materials @relation(fields: [materialsId], references: [id])
+  materialsId     Int
+  beginingRentals DateTime  @default(now())
+  endingRentals   DateTime
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+enum Availability {
+  AVAILABLE
+  RENTED
+}

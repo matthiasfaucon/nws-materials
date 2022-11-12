@@ -1,0 +1,38 @@
+[
+  {
+    "_id": "074d4ff6-5b0f-497b-a2dc-f203a13483a0",
+    "colName": "NWS-INVENTORY",
+    "created": "2022-10-30T18:36:05.052Z",
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "81db22ab-1b25-4536-b955-4cb38e27d3c4",
+        "name": "USERS",
+        "containerId": "",
+        "created": "2022-10-30T18:36:37.184Z",
+        "sortNum": 10000
+      },
+      {
+        "_id": "d2128e81-9725-4e0d-9f48-e785e65d9a82",
+        "name": "MATERIELS",
+        "containerId": "",
+        "created": "2022-10-30T18:36:48.016Z",
+        "sortNum": 20000
+      },
+      {
+        "_id": "dd204eac-93d9-4ed1-bc59-6db3b8916f38",
+        "name": "RENTALS",
+        "containerId": "",
+        "created": "2022-10-30T18:37:22.230Z",
+        "sortNum": 30000
+      }
+    ],
+    "settings": {
+      "headers": [],
+      "tests": [],
+      "options": {
+        "baseUrl": "http://localhost:3000/api"
+      }
+    }
+  }
+]

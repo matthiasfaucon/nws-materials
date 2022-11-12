@@ -1,0 +1,198 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+html, body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    height: 100%;
+    background: #ECF0F3;
+  }
+  .card {
+    margin-bottom: 3rem;
+  }
+  .content-wrapper {
+    margin-top: 3rem;
+  }
+  .card-footer-item {
+    font-size: 12px;
+    font-weight: normal;
+  }
+  .card-header-title {
+    display: block;
+  }
+  .card-content p {
+    margin-bottom: 2rem;
+  }
+  .container {
+    max-width: 95%;
+  }
+  .fa-code, .fa-search {
+    margin-right: 0.5vw;
+  }
+
+  .columns {
+    margin-top: 0;
+}
+
+/* Start nav drawer */
+aside.column {
+    padding: 0;
+    box-shadow: 2px 0px 4px #888888;
+}
+.panel-heading, .panel-block {
+    border: 0;
+    border-radius: 0;
+}
+.panel-block {
+    justify-content: center;
+}
+/*End nav drawer  */
+
+section.column {
+    padding: 2rem;
+}
+
+.tabs {
+    margin-bottom: -1px !important;
+    position: relative;
+    }
+    .tab-content {
+    padding: 60px;
+    top: 197px;
+    color: #000;
+    background-color: white;
+    }
+    .tab-pane {
+    display: none;
+    }
+    .tab-pane.is-active {
+    display: block;
+    width: 50%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    }
+    .is-active {
+    display: initial;
+    }
+    
+    .cent{
+    display: block;
+    margin: 10px auto;
+    padding: 5px;
+    border: 1px solid #ccc}
+    
+    .video
+    {display: block;
+    margin: 0 auto;}
+    
+    /* CSS from http://embedresponsively.com */
+    .embed-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        max-width: 100%;
+    }
+    .embed-container iframe,
+    .embed-container object,
+    .embed-container embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .hero.is-info {
+        background: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ), url('https://unsplash.it/1200/900?random') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+      .hero .nav, .hero.is-success .nav {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .hero .subtitle {
+        padding: 3rem 0;
+        line-height: 1.5;
+      }
+
+      nav.navbar {
+        border-top: 4px solid #276cda;
+        margin-bottom: 1rem;
+      }
+      .navbar-item.brand-text {
+        font-weight: 300;
+      }
+      .navbar-item, .navbar-link {
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .columns {
+        width: 100%;
+        height: 100%;
+        margin-left: 0;
+      }
+      .menu-label {
+        color: #8F99A3;
+        letter-spacing: 1.3;
+        font-weight: 700;
+      }
+      .menu-list a {
+        color: #0F1D38;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .menu-list a:hover {
+        background-color: transparent;
+        color: #276cda;
+      }
+      .menu-list a.is-active {
+        background-color: transparent;
+        color: #276cda;
+        font-weight: 700;
+      }
+      .card {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+        margin-bottom: 2rem;
+      }
+      .card-header-title {
+        color: #8F99A3;
+        font-weight: 400;
+      }
+      .info-tiles {
+        margin: 1rem 0;
+      }
+      .info-tiles .subtitle {
+        font-weight: 300;
+        color: #8F99A3;
+      }
+      .hero.welcome.is-info {
+        background: #36D1DC;
+        background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);
+        background: linear-gradient(to right, #5B86E5, #36D1DC);
+      }
+      .hero.welcome .title, .hero.welcome .subtitle {
+        color: hsl(192, 17%, 99%);
+      }
+      .card .content {
+        font-size: 14px;
+      }
+      .card-footer-item {
+        font-size: 14px;
+        font-weight: 700;
+        color: #8F99A3;
+      }
+      .card-table .table {
+        margin-bottom: 0;
+      }
+      .events-card .card-table {
+        max-height: 250px;
+        overflow-y: scroll;
+      }

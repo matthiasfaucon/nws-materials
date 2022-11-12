@@ -1,0 +1,42 @@
+<template>
+    <div class="columns">
+        <div class="column is-full">
+            <div class="card">
+                <div class="card-table">
+                    <table class="table">
+                        <HeaderListingRentals />
+                        <tbody class="is-large">
+                            <UnRentals :rental="rental" v-for="rental in rentalsComputed" />
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="column is-6">
+            <div class="card">
+            </div>
+        </div>
+    </div>
+</template>
+
+<script lang="ts" setup>
+import { computed, onBeforeMount, onMounted, onUpdated, ref } from 'vue';
+import { getRentals } from '../utils/api';
+import UnRentals from './UnRentals.vue';
+import { useRentalsStore } from '~~/store/rentals';
+
+const rentals = ref([])
+const useRentals = useRentalsStore()
+
+const rentalsComputed = computed(() => {
+    return useRentals.rentals
+})
+
+onMounted(async () => {
+    rentals.value = await getRentals()
+    useRentals.setRentals(rentals.value)
+})
+
+    // let el = computed (() => users.el.value)
+    // console.log(el)
+</script>
