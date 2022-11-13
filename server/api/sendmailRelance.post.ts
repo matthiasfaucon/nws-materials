@@ -15,9 +15,9 @@ export default defineEventHandler(async (event) => {
 
     const res = await client.sendMail({
         to: emailUser,
-        subject: `Réservation d'un(e) ${denominationMaterial}`,
-        text: `Votre réservation pour l'équipement suivant: ${denominationMaterial}, débutera le ${beginingRentals} et se finira le ${endingRentals}`,
-        html: `<p>Votre réservation pour l'équipement suivant: <b>${denominationMaterial}</b>, débutera le <b>${beginingRentals}</b> et se finira le <b>${endingRentals}</b></p>`
+        subject: `RAPPEL: Réservation d'un(e) ${denominationMaterial}`,
+        text: `Votre réservation pour l'équipement suivant: ${denominationMaterial}, a débuté le ${beginingRentals} et s'est ou se terminera le ${endingRentals} Merci de bien vouloir le ramener`,
+        html: `<p>Votre réservation pour l'équipement suivant: <b>${denominationMaterial}</b>, a débuté le <b>${beginingRentals}</b> et s'est ou se terminera le <b>${endingRentals}</b></p> <br><b>Merci de bien vouloir le ramener</b></br>`
     })
     console.log(res)
 })

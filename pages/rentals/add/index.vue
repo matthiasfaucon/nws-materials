@@ -55,8 +55,9 @@
    
 <script lang="ts" setup>
 import { computed, onMounted, ref } from 'vue';
-import { createRental, getUsers, getMaterials, updateRental, updateMaterial, sendMailUser } from '../../../utils/api';
+import { createRental, getUsers, getMaterials, updateRental, updateMaterial, sendMailUser, getMaterial } from '../../../utils/api';
 import { setFormatDate } from '../../../utils/utils';
+import { getUser } from '~~/utils/api';
 
 const route = useRoute()
 const id = route.params.id
@@ -92,6 +93,22 @@ async function createNewRental() {
     }
     createRental(bodyRental)
     updateMaterial(rental_ID_material.value, bodyMaterial)
-    sendMailUser(userId)
+    let user = await getUser(rental_ID_user.value)
+    let material = await getMaterial(rental_ID_material.value)
+    console.log(user)
+    let body = {
+        userData: {
+            emailUser: user.email
+        },
+        materialData: {
+            denominationMaterial: material.denomination
+        },
+        rentalData: {
+            beginingRentals: beginingRentals.value,
+            endingRentals: endingRentals.value
+        }
+    }
+    console.log(body)
+    sendMailUser(body)
 }
 </script>

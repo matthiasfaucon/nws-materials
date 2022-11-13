@@ -229,12 +229,13 @@ async function deleteRental(id) {
     return datas
 }
 
-async function sendMailUser() {
+async function sendMailUser(body) {
     let email = ""
     try {
         const res = await fetch(`${location.origin}/api/sendmail`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({emailUser: body.userData.emailUser, denominationMaterial: body.materialData.denominationMaterial, beginingRentals: body.rentalData.beginingRentals, endingRentals: body.rentalData.endingRentals})
         })
         email = await res.json()
         console.log(email)
@@ -244,4 +245,20 @@ async function sendMailUser() {
     return email
 }
 
-export { getUsers, getUser, createUser, updateUser, deleteUser, getMaterials, getMaterial, createMaterial, updateMaterial, deleteMaterial, getRentals, getRental, createRental, updateRental, deleteRental, sendMailUser }
+async function sendMailRelanceUser(body) {
+    let email = ""
+    try {
+        const res = await fetch(`${location.origin}/api/sendmailRelance`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({emailUser: body.userData.emailUser, denominationMaterial: body.materialData.denominationMaterial, beginingRentals: body.rentalData.beginingRentals, endingRentals: body.rentalData.endingRentals})
+        })
+        email = await res.json()
+        console.log(email)
+    } catch (error) {
+        console.error(error)
+    }
+    return email
+}
+
+export { getUsers, getUser, createUser, updateUser, deleteUser, getMaterials, getMaterial, createMaterial, updateMaterial, deleteMaterial, getRentals, getRental, createRental, updateRental, deleteRental, sendMailUser, sendMailRelanceUser}
