@@ -1,5 +1,14 @@
 <template>
     <section>
+        <nav class="navbar is-white is-hidden-mobile">
+            <div class="container">
+                <div class="navbar-brand">
+                    <p class="navbar-item brand-text">
+                        NWS Admin
+                    </p>
+                </div>
+            </div>
+        </nav>
         <HamburgerMenu />
         <!-- END NAV -->
         <div class="container">
@@ -16,7 +25,8 @@
                         <div class="control mt-4">
                             <input class="input is-rounded" type="text" v-model="material_quantite">
                         </div>
-                        <button class="button is-link is-rounded mt-5" @click=updateSelectedMateriel()>Mettre à jour</button>
+                        <button class="button is-link is-rounded mt-5" @click=updateSelectedMateriel()>Mettre à
+                            jour</button>
                     </div>
                 </div>
             </div>
@@ -34,13 +44,13 @@ const id = route.params.id
 let material = ref([])
 const material_denomination = ref('')
 const material_quantite = ref('')
-    onMounted(async () => {
-        material.value = await getMaterial(id)
-        material_denomination.value = material.value.denomination
-        material_quantite.value = material.value.quantite
-    })
+onMounted(async () => {
+    material.value = await getMaterial(id)
+    material_denomination.value = material.value.denomination
+    material_quantite.value = material.value.quantite
+})
 
-async function updateSelectedMateriel(){
+async function updateSelectedMateriel() {
     let body = {
         denomination: material_denomination.value,
         quantite: material_quantite.value,
@@ -54,7 +64,7 @@ async function updateSelectedMateriel(){
             confirmButtonText: 'Suivant'
         })
     }
-    else{
+    else {
         Swal.fire({
             title: 'L\'équipement a été mis à jour',
             icon: 'success',

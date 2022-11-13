@@ -3,5 +3,4 @@ function setFormatDate(date) {
   let beginningRentalsDate = date.toLocaleDateString("fr-FR", options)
   return beginningRentalsDate
 }
-
 export { setFormatDate }
