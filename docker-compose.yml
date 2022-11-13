@@ -17,6 +17,7 @@ services:
     # command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
+      MYSQL_DATABASE: materiels
       MYSQL_USER: nws_app
       MYSQL_PASSWORD: "${DB_PASSWORD}"
       MYSQL_RANDOM_ROOT_PASSWORD: true
