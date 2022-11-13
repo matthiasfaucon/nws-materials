@@ -36,7 +36,6 @@ const materialsComputed = computed(() => {
 onMounted(async() => {
   materials.value = await getMaterials()
   useMaterials.setMaterials(materials.value)
-  sendMailUser()
 })
 
     // let el = computed (() => users.el.value)

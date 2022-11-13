@@ -55,7 +55,7 @@
    
 <script lang="ts" setup>
 import { computed, onMounted, ref } from 'vue';
-import { createRental, getUsers, getMaterials, updateRental, updateMaterial } from '../../../utils/api';
+import { createRental, getUsers, getMaterials, updateRental, updateMaterial, sendMailUser } from '../../../utils/api';
 import { setFormatDate } from '../../../utils/utils';
 
 const route = useRoute()
@@ -92,5 +92,6 @@ async function createNewRental() {
     }
     createRental(bodyRental)
     updateMaterial(rental_ID_material.value, bodyMaterial)
+    sendMailUser(userId)
 }
 </script>

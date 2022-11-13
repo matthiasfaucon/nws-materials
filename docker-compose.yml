@@ -4,20 +4,32 @@ services:
     build: 
       dockerfile: Dockerfile
     ports:
-      - 3000:3000
-    volumes:
-      - .:/app:cached
+      - "3000:3000"
     environment:
-      DATABASE_URL: "mysql://root@localhost:3306/nws-inventaire" # DEV URL DB
+      DATABASE_URL: "${DATABASE_URL}" # DEV URL DB
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1
+
   db:
     image: mysql
     # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
     # (this is just an example, not intended to be a production configuration)
     # command: --default-authentication-plugin=mysql_native_password
     restart: always
+    environment:
+      MYSQL_USER: nws_app
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_RANDOM_ROOT_PASSWORD: true
     volumes:
       - mysqldb-data:/var/lib/mysql
-    network_mode: service:app
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    environment:
+      PMA_ARBITRARY: 1
+    ports:
+      - 8080:80
 
 volumes:
   mysqldb-data:
