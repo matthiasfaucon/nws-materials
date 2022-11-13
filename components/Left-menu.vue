@@ -14,7 +14,7 @@
         <ul class="menu-list">
             <li>
                 <Nuxt-link to="/users">
-                    <p>Utitlisateurs</p>
+                    <p>Utilisateurs</p>
                 </Nuxt-link>
                 <ul>
                     <li>

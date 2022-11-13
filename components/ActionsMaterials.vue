@@ -1,21 +1,22 @@
 <template>
     <div class="is-flex">
-    <td class="level-right">
-       <nuxt-link @click="deleteSelectedMaterial(material.id)">
-            <a class="button is-small is-primary">Delete</a>
-       </nuxt-link>
-    </td>
-    <td class="level-right">
-       <nuxt-link :to="`materials/page-material/${material.id}`">
-        <a class="button is-small is-primary">Update</a>
-       </nuxt-link> 
-    </td>
+        <td class="level-right">
+            <nuxt-link @click="deleteSelectedMaterial(material.id)">
+                    <a class="button is-small is-primary">Supprimer</a>
+            </nuxt-link>
+        </td>
+        <td class="level-right">
+        <nuxt-link :to="`materials/page-material/${material.id}`">
+            <a class="button is-small is-primary">Mettre à jour</a>
+        </nuxt-link> 
+        </td>
     </div>
 </template>
 
 <script lang="ts" setup>
 import { deleteMaterial, getMaterials } from '../utils/api'
 import { useMaterialsStore } from '../store/materials';
+import Swal from 'sweetalert2';
 
 const props = defineProps(['material'])
 
@@ -24,9 +25,27 @@ const useMaterials = useMaterialsStore()
 const materials = ref([])
 
 async function deleteSelectedMaterial(id){
-    deleteMaterial(id)
+    let createMaterialPromise = await deleteMaterial(id)
+    console.log(createMaterialPromise)
+    if (createMaterialPromise.statusCode === 500) {
+        Swal.fire({
+            title: 'Impossible de supprimer l\'équipement',
+            text: 'L\'équipement est associé à une location, veuillez donc supprimez la location avant de supprimer cet équipement',
+            icon: 'error',
+            confirmButtonText: 'Suivant'
+        })
+    }
+    else{
+        Swal.fire({
+            title: 'L\'équipement a bien été supprimer',
+            icon: 'success',
+            confirmButtonText: 'Suivant'
+        })
+    }
     materials.value = await getMaterials()
-    useMaterials.setMaterials(materials.value)
+    useMaterials.$patch({
+      materials: materials.value
+    })
 }
 
 </script>

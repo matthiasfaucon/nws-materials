@@ -1,0 +1,7 @@
+localhost {
+    reverse_proxy * app:3000
+}
+
+faucon.iamroot.fr {
+    reverse_proxy * app:3000
+}

@@ -40,7 +40,9 @@
     </section>
 </template>
    
-<script lang="ts" setup>import { computed, onMounted, ref } from 'vue';
+<script lang="ts" setup>
+import Swal from 'sweetalert2';
+import { computed, onMounted, ref } from 'vue';
 import { createUser } from '../../../utils/api';
 
 const user_nom = ref('nom')
@@ -53,7 +55,22 @@ async function createSelectedUser() {
         prenom: user_prenom.value,
         email: user_email.value
     }
-    //    console.log(body)
-    createUser(body)
+    
+    let createUserPromise = await createUser(body)
+    if (createUserPromise.statusCode === 500) {
+        Swal.fire({
+            title: 'Impossible de créer l\'utilisateur',
+            text: 'L\'adresse e-mail est déjà utilisée',
+            icon: 'error',
+            confirmButtonText: 'Suivant'
+        })
+    }
+    else{
+        Swal.fire({
+            title: 'L\'utilisateur a bien été créer',
+            icon: 'success',
+            confirmButtonText: 'Suivant'
+        })
+    }
 }
 </script>

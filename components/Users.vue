@@ -16,7 +16,7 @@
               </tr>
             </thead>
             <tbody class="is-large">
-              <UnUser :user="user" v-for="user in usersComputed" />
+              <UnUser :user="user" v-for="user in useUsers.$state.users" />
             </tbody>
           </table>
         </div>
@@ -30,24 +30,23 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onBeforeMount, onMounted, onUpdated, ref } from 'vue';
+import { computed, onBeforeMount, onMounted, ref} from 'vue';
 import { getUsers, sendMailUser } from '../utils/api';
 import { useUsersStore } from '../store/users';
-
-
 
 const users = ref([])
 const useUsers = useUsersStore()
 
-const usersComputed = computed(() => {
-  return useUsers.users
+    users.value = await getUsers()
+    await useUsers.$patch({
+      users: users.value
 })
 
-onMounted(async () => {
-  users.value = await getUsers()
-  useUsers.setUsers(users.value)
-  // sendMailUser()
-})
+// function onErrorCaptured(){
+
+// }
+
+
 
     // let el = computed (() => users.el.value)
     // console.log(el)

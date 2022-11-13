@@ -21,6 +21,7 @@
 <script lang="ts" setup>
 import { deleteRental, updateMaterial, getRentals, sendMailRelanceUser } from '../utils/api'
 import { useRentalsStore } from '../store/rentals';
+import Swal from 'sweetalert2';
 
 const props = defineProps(['rental'])
 const useRentals = useRentalsStore()
@@ -28,30 +29,70 @@ const useRentals = useRentalsStore()
 const rentals = ref([])
 
 async function deleteSelectedRentals(rental) {
-  console.log(rental)
-  deleteRental(rental.id)
-  let bodyMaterial = {
-        availability : "AVAILABLE"
+  let createRentalPromise = await deleteRental(rental.id)
+  if (createRentalPromise.statusCode === 500) {
+    Swal.fire({
+      title: 'Impossible de supprimer la location',
+      text: 'La location n\'existe plus',
+      icon: 'error',
+      confirmButtonText: 'Suivant'
+    })
+  }
+  else {
+    let bodyMaterial = {
+      availability: "AVAILABLE"
     }
-  updateMaterial(rental.materialsId, bodyMaterial)
-  rentals.value = await getRentals() 
-  useRentals.setRentals(rentals.value)
+    updateMaterial(rental.materialsId, bodyMaterial)
+    rentals.value = await getRentals()
+    useRentals.$patch({
+      rentals: rentals.value
+    })
+    Swal.fire({
+      title: 'La location a bien été supprimer',
+      icon: 'success',
+      confirmButtonText: 'Suivant'
+    })
+  }
+
 }
 
-async function relanceSelectedrental(rental){
-  console.log(rental.materials)
+async function relanceSelectedrental(rental) {
   let body = {
-        userData: {
-          emailUser: rental.user.email
-        },
-        materialData: {
-          denominationMaterial: rental.materials.denomination
-        },
-        rentalData: {
-          beginingRentals: rental.beginingRentals,
-          endingRentals: rental.endingRentals
-        }
+    userData: {
+      emailUser: rental.user.email
+    },
+    materialData: {
+      denominationMaterial: rental.materials.denomination
+    },
+    rentalData: {
+      beginingRentals: rental.beginingRentals,
+      endingRentals: rental.endingRentals
     }
-  sendMailRelanceUser(body)
+  }
+  
+  let createRentalPromise = await sendMailRelanceUser(body)
+  if (createRentalPromise.statusCode === 500 || !body.userData.emailUser || !body.materialData.denominationMaterial || !body.rentalData.beginingRentals || !body.rentalData.endingRentals ) {
+    Swal.fire({
+      title: 'Impossible d\'envoyer le mail de relance',
+      text: 'La location n\'existe plus',
+      icon: 'error',
+      confirmButtonText: 'Suivant'
+    })
+  }
+  else {
+    let bodyMaterial = {
+      availability: "AVAILABLE"
+    }
+    updateMaterial(rental.materialsId, bodyMaterial)
+    rentals.value = await getRentals()
+    useRentals.$patch({
+      rentals: rentals.value
+    })
+    Swal.fire({
+      title: 'Mail de relance envoyé',
+      icon: 'success',
+      confirmButtonText: 'Suivant'
+    })
+  }
 }
 </script>

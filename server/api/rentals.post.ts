@@ -17,8 +17,6 @@ export default defineEventHandler(async (event) => {
         }
     })
     let result = []
-    console.log(await resultUser)
-    console.log(await resultMaterial)
     if (resultUser && resultMaterial.availability === "AVAILABLE") {
         result = await prisma.rentals.create({
             data: {
@@ -33,6 +31,10 @@ export default defineEventHandler(async (event) => {
               },
         })
     }
+    else{
+        throw createError({ statusCode: 400, message: "Le matériel est déjà loué" })
+    }
+
     return result
 })
 

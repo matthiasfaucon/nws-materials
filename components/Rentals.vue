@@ -6,7 +6,7 @@
                     <table class="table">
                         <HeaderListingRentals />
                         <tbody class="is-large">
-                            <UnRentals :rental="rental" v-for="rental in rentalsComputed" />
+                            <UnRentals :rental="rental" v-for="rental in useRentals.$state.rentals" />
                         </tbody>
                     </table>
                 </div>
@@ -28,13 +28,11 @@ import { useRentalsStore } from '~~/store/rentals';
 const rentals = ref([])
 const useRentals = useRentalsStore()
 
-const rentalsComputed = computed(() => {
-    return useRentals.rentals
-})
-
 onMounted(async () => {
     rentals.value = await getRentals()
-    useRentals.setRentals(rentals.value)
+    useRentals.$patch({
+        rentals: rentals.value
+    })
 })
 
     // let el = computed (() => users.el.value)

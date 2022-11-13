@@ -26,7 +26,7 @@
                         <div class="is-flex">
                             <div class="select is-rounded">
                                 <select v-model="rental_ID_material">
-                                    <option :selected="material.id === rental_ID_material" v-for="material in materials"
+                                    <option :selected="material.id === material.id" v-for="material in materials"
                                         :value="material.id">{{ material.denomination }}</option>
                                 </select>
                             </div>
@@ -58,6 +58,8 @@ import { computed, onMounted, ref } from 'vue';
 import { createRental, getUsers, getMaterials, updateRental, updateMaterial, sendMailUser, getMaterial } from '../../../utils/api';
 import { setFormatDate } from '../../../utils/utils';
 import { getUser } from '~~/utils/api';
+import Swal from 'sweetalert2'
+import { create } from 'domain';
 
 const route = useRoute()
 const id = route.params.id
@@ -91,24 +93,40 @@ async function createNewRental() {
     let bodyMaterial = {
         availability : "RENTED"
     }
-    createRental(bodyRental)
-    updateMaterial(rental_ID_material.value, bodyMaterial)
-    let user = await getUser(rental_ID_user.value)
-    let material = await getMaterial(rental_ID_material.value)
-    console.log(user)
-    let body = {
-        userData: {
-            emailUser: user.email
-        },
-        materialData: {
-            denominationMaterial: material.denomination
-        },
-        rentalData: {
-            beginingRentals: beginingRentals.value,
-            endingRentals: endingRentals.value
-        }
+    let createRentalPromise = await createRental(bodyRental)
+    console.log(createRentalPromise)
+    if (createRentalPromise.statusCode === 400) {
+        Swal.fire({
+            title: 'Impossible de créer la location',
+            text: createRentalPromise.message,
+            icon: 'error',
+            confirmButtonText: 'Suivant'
+        })
     }
-    console.log(body)
-    sendMailUser(body)
+    else {
+        await updateMaterial(rental_ID_material.value, bodyMaterial)
+        let user = await getUser(rental_ID_user.value)
+        let material = await getMaterial(rental_ID_material.value)
+        console.log(user)
+        let body = {
+            userData: {
+                emailUser: user.email
+            },
+            materialData: {
+                denominationMaterial: material.denomination
+            },
+            rentalData: {
+                beginingRentals: beginingRentals.value,
+                endingRentals: endingRentals.value
+            }
+        }
+        console.log(body)
+        sendMailUser(body)
+        Swal.fire({
+            title: 'La location a bien été créer',
+            icon: 'success',
+            confirmButtonText: 'Suivant'
+        })
+    }
 }
 </script>

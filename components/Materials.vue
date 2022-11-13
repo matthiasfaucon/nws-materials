@@ -6,7 +6,7 @@
             <table class="table">
                 <HeaderListingMaterials />
               <tbody class="is-large">
-                <UnMateriel :material="material" v-for="material in materialsComputed" />
+                <UnMateriel :material="material" v-for="material in useMaterials.$state.materials" />
               </tbody>
             </table>
           </div>
@@ -26,16 +26,13 @@ import { getMaterials, sendMailUser } from '../utils/api';
 import UnMateriel from './UnMateriel.vue';
 
 const useMaterials = useMaterialsStore()
-
 const materials = ref([])
-
-const materialsComputed = computed(() => {
-    return useMaterials.materials
-})
 
 onMounted(async() => {
   materials.value = await getMaterials()
-  useMaterials.setMaterials(materials.value)
+  useMaterials.$patch({
+      materials: materials.value
+    })
 })
 
     // let el = computed (() => users.el.value)

@@ -3,10 +3,10 @@ FROM node:16
 WORKDIR /app
 
 COPY . /app
-RUN npm ci
+RUN npm ci && npm run build
 
 ENV NUXT_PORT=3000
 
 EXPOSE 3000
 
-CMD [ "/bin/sh", "-c", "npm run dev -- --host 0.0.0.0" ]
+CMD [ "node", ".output/server/index.mjs" ]

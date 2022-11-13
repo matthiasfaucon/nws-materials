@@ -6,15 +6,11 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: "${DATABASE_URL}" # DEV URL DB
-    sysctls:
-      - net.ipv6.conf.all.disable_ipv6=1
+      DATABASE_URL: "${DATABASE_URL}" # URL DB
+      GMAIL_APP_PASSWORD: "${GMAIL_APP_PASSWORD}"
 
   db:
     image: mysql
-    # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
-    # (this is just an example, not intended to be a production configuration)
-    # command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
       MYSQL_DATABASE: materiels
@@ -23,14 +19,24 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: true
     volumes:
       - mysqldb-data:/var/lib/mysql
+  reverse-proxy:
+    image: caddy
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy-data:/data
 
   phpmyadmin:
     image: phpmyadmin
     restart: always
     environment:
-      PMA_ARBITRARY: 1
+      - PMA_HOST=db
     ports:
       - 8080:80
 
 volumes:
   mysqldb-data:
+  caddy-data:

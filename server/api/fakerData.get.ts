@@ -32,18 +32,6 @@ export default defineEventHandler(async (event) => {
             }
         })
     }
-    // for (let i = 0; i < Math.round(Math.random() * 30 + 20); i++){
-    //     const createdAt = faker.date.past()
-    //     const updatedAt = faker.date.between(createdAt, new Date())
-    //     resultRentals = await prisma.rentals.create({
-    //         data: {
-    //             beginingRentals: faker.date.past(),
-    //             endingRentals: faker.date.future(),
-
-                
-    //         }
-    //     })
-    // }
     return {resultMaterials, resultUsers}
 })
 

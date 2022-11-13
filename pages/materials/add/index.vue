@@ -29,7 +29,7 @@
                         <div class="control mt-4">
                             <input class="input is-rounded" type="text" v-model="material_quantite">
                         </div>
-                        <button class="button is-link is-rounded mt-5" @click=createNewMaterial()>Mettre à jour</button>
+                        <button class="button is-link is-rounded mt-5" @click=createNewMaterial()>Ajouter</button>
                     </div>
                 </div>
             </div>
@@ -37,8 +37,11 @@
     </section>
 </template>
    
-<script lang="ts" setup>import { computed, onMounted, ref } from 'vue';
+<script lang="ts" setup>
+import Swal from 'sweetalert2';
+import { computed, onMounted, ref } from 'vue';
 import { createMaterial } from '../../../utils/api';
+import { create } from 'domain';
 
 const material_denomination = ref('denomination')
 const material_quantite = ref(20)
@@ -49,6 +52,21 @@ async function createNewMaterial() {
         quantite: material_quantite.value,
     }
     //    console.log(body)
-    createMaterial(body)
+    let createMaterialPromise = await createMaterial(body)
+    if (createMaterialPromise.statusCode === 500) {
+        Swal.fire({
+            title: 'Impossible de créer l\'équipement',
+            text: 'Le matériel existe déjà',
+            icon: 'error',
+            confirmButtonText: 'Suivant'
+        })
+    }
+    else{
+        Swal.fire({
+            title: 'L\'équipement a bien été créer',
+            icon: 'success',
+            confirmButtonText: 'Suivant'
+        })
+    }
 }
 </script>

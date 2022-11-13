@@ -200,6 +200,7 @@ async function createRental(body) {
 
 async function updateRental(id, body) {
     let datas = []
+    console.log(id, body)
     try {
         const res = await fetch(`${location.origin}/api/rentals/${id}`, {
             method: 'PATCH',
