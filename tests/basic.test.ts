@@ -129,11 +129,11 @@ describe('Should test the CRUD for the rentals', async () => {
   })
 
   it('Should get one rental', async () => {
-    let rental = await getRental(2)
+    let rental = await getRental(7)
     expect(rental).toContain({
-      id: 2
+      id: 7
     })
-      expectTypeOf(rental).toBeObject()
+    expectTypeOf(rental).toBeObject()
   })
 
   it('Should create one rental', async () => {
@@ -151,14 +151,14 @@ describe('Should test the CRUD for the rentals', async () => {
   })
 
   it('Should update one rental', async () => {
-    let rental = await getRental(6)
+    let rental = await getRental(7)
     let materials = getMaterials()
     let users = getUsers()
     let materialsId = Number(faker.finance.amount(1, (await materials).length, 0))
     let userId = Number(faker.finance.amount(1, (await users).length, 0))
     let beginingRentals = faker.date.past()
     let endingRentals = faker.date.future()
-    let rentalUpdated = await updateRental(6, {materialsId: materialsId, userId: userId, beginingRentals: beginingRentals, endingRentals: endingRentals})
+    let rentalUpdated = await updateRental(7, {materialsId: materialsId, userId: userId, beginingRentals: beginingRentals, endingRentals: endingRentals})
     expect(rentalUpdated).not.toBe(rental)
     expect(rentalUpdated).toContain({
       materialsId: materialsId, 
