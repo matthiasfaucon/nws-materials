@@ -3,8 +3,6 @@ services:
   app:
     build: 
       dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
     environment:
       DATABASE_URL: "${DATABASE_URL}" # URL DB
       GMAIL_APP_PASSWORD: "${GMAIL_APP_PASSWORD}"
