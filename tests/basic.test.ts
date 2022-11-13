@@ -21,13 +21,8 @@ describe('Should test the CRUD for the users', async () => {
 
   it('Should get one user', async () => {
     let user = await getUser(5)
-    expect(user).toEqual({
+    expect(user).toContain({
         id: 5,
-        nom: 'Jamie',
-        prenom: 'Huels',
-        email: 'Aurelia.McDermott@gmail.com',
-        createdAt: '2022-03-24T06:39:39.001Z',
-        updatedAt: '2022-03-28T12:08:11.891Z'
       })
       expectTypeOf(user).toBeObject()
   })
