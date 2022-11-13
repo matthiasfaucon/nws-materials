@@ -1,11 +1,11 @@
 <template>
     <tr class="is-large" v-if="material.quantite > 0">
-        <td>{{ material.id }}</td>
-        <td>{{ material.denomination }}</td>
-        <td>{{ material.createdAt }}</td>
-        <td>{{ material.updatedAt }}</td>
-        <td>{{ material.availability }}</td>
-        <td><ActionsMaterials :material="material" /></td>
+        <td class="is-vcentered">{{ material.id }}</td>
+        <td class="is-vcentered">{{ material.denomination }}</td>
+        <!-- <td>{{ material.createdAt }}</td>
+        <td>{{ material.updatedAt }}</td> -->
+        <td class="is-vcentered">{{ material.availability }}</td>
+        <td class="is-vcentered"><ActionsMaterials :material="material" /></td>
     </tr>
 </template>
 

@@ -1,23 +1,19 @@
 <template>
     <div class="columns">
-      <div class="column is-full">
-        <div class="card">
-          <div class="card-table">
-            <table class="table">
-                <HeaderListingMaterials />
-              <tbody class="is-large">
-                <UnMateriel :material="material" v-for="material in useMaterials.$state.materials" />
-              </tbody>
-            </table>
-          </div>
+        <div class="column is-full">
+            <div class="card">
+                <div class="card-table">
+                    <table class="table">
+                        <HeaderListingMaterials />
+                        <tbody class="is-large">
+                            <UnMateriel :material="material" v-for="material in useMaterials.$state.materials" />
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="column is-6">
-        <div class="card">
-        </div>
-      </div>
     </div>
-  </template>
+</template>
 
 <script lang="ts" setup>
 import { computed, onBeforeMount, onMounted, onUpdated, ref } from 'vue';
@@ -28,10 +24,10 @@ import UnMateriel from './UnMateriel.vue';
 const useMaterials = useMaterialsStore()
 const materials = ref([])
 
-onMounted(async() => {
-  materials.value = await getMaterials()
-  useMaterials.$patch({
-      materials: materials.value
+onMounted(async () => {
+    materials.value = await getMaterials()
+    useMaterials.$patch({
+        materials: materials.value
     })
 })
 

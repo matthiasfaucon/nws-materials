@@ -12,24 +12,20 @@
         </div>
       </div>
     </div>
-    <div class="column is-6">
-      <div class="card">
-      </div>
-    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, onBeforeMount, onMounted, ref} from 'vue';
+import { computed, onBeforeMount, onMounted, ref } from 'vue';
 import { getUsers, sendMailUser } from '../utils/api';
 import { useUsersStore } from '../store/users';
 
 const users = ref([])
 const useUsers = useUsersStore()
 
-    users.value = await getUsers()
-    await useUsers.$patch({
-      users: users.value
+users.value = await getUsers()
+await useUsers.$patch({
+  users: users.value
 })
 
 </script>

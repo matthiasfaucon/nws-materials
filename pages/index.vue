@@ -32,7 +32,7 @@
               <div class="tile is-parent">
                 <article class="tile is-child box">
                   <p class="title">{{ countMaterials }}</p>
-                  <p class="subtitle">Matériels</p>
+                  <p class="subtitle">Equipements</p>
                 </article>
               </div>
               <div class="tile is-parent">

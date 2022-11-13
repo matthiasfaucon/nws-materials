@@ -1,15 +1,11 @@
 <template>
     <div class="is-flex">
-        <td class="level-right">
-            <nuxt-link @click="deleteSelectedMaterial(material.id)">
-                    <a class="button is-small is-link">Supprimer</a>
-            </nuxt-link>
-        </td>
-        <td class="level-right">
+        <nuxt-link @click="deleteSelectedMaterial(material.id)">
+                <a class="button is-small is-link">Supprimer</a>
+        </nuxt-link>
         <nuxt-link :to="`materials/page-material/${material.id}`">
-            <a class="button is-small is-link">Mettre à jour</a>
+            <a class="button is-small is-link ml-4">Mettre à jour</a>
         </nuxt-link> 
-        </td>
     </div>
 </template>
 

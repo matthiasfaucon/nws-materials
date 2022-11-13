@@ -4,8 +4,8 @@
         <td class="is-vcentered">{{ user.nom }}</td>
         <td class="is-vcentered">{{ user.prenom }}</td>
         <td class="is-vcentered">{{ user.email }}</td>
-        <td class="is-vcentered">{{ user.createdAt }}</td>
-        <td class="is-vcentered">{{ user.updatedAt }}</td>
+        <!-- <td class="is-vcentered">{{ user.createdAt }}</td>
+        <td class="is-vcentered">{{ user.updatedAt }}</td> -->
         <td class="is-vcentered"><ActionsUsers :user="user"/></td>
     </tr>
 </template>

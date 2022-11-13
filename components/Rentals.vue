@@ -12,10 +12,6 @@
                 </div>
             </div>
         </div>
-        <div class="column is-6">
-            <div class="card">
-            </div>
-        </div>
     </div>
 </template>
 
@@ -35,6 +31,4 @@ onMounted(async () => {
     })
 })
 
-    // let el = computed (() => users.el.value)
-    // console.log(el)
 </script>
