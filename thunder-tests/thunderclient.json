@@ -47,10 +47,10 @@
     "containerId": "",
     "name": "Add fake datas",
     "url": "/fakerData",
-    "method": "POST",
+    "method": "GET",
     "sortNum": 40000,
     "created": "2022-10-30T20:12:25.421Z",
-    "modified": "2022-10-30T20:12:42.232Z",
+    "modified": "2022-11-13T00:52:14.330Z",
     "headers": [],
     "params": [],
     "tests": []
