@@ -61,6 +61,9 @@ import { setFormatDate } from '../../../utils/utils';
 const route = useRoute()
 const id = route.params.id
 
+
+console.log(id)
+
 let rental = ref([])
 const rental_material = ref('')
 const rental_ID_material = ref('')

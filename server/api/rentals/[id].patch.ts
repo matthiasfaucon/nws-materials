@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
     }
     const resultUser = await prisma.users.findUniqueOrThrow({
         where: {
-            id: Number(id)
+            id: Number(userId)
         }
     })
     const resultMaterial = await prisma.materials.findUniqueOrThrow({
@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
                 endingRentals: true
             },
             where: {
-                id: Number(userId)
+                id: Number(id)
             },
             update: {
                 materialsId: materialsId,

@@ -42,12 +42,4 @@ const useUsers = useUsersStore()
       users: users.value
 })
 
-// function onErrorCaptured(){
-
-// }
-
-
-
-    // let el = computed (() => users.el.value)
-    // console.log(el)
 </script>

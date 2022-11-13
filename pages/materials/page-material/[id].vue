@@ -44,7 +44,6 @@ import { getMaterial, updateMaterial } from '../../../utils/api';
 const route = useRoute()
 const id = route.params.id
 
-
 let material = ref([])
 const material_denomination = ref('')
 const material_quantite = ref('')
