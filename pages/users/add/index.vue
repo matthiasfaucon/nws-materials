@@ -1,19 +1,6 @@
 <template>
     <section>
-        <nav class="navbar is-white">
-            <div class="container">
-                <div class="navbar-brand">
-                    <p class="navbar-item brand-text">
-                        NWS Admin
-                    </p>
-                    <div class="navbar-burger burger" data-target="navMenu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <HamburgerMenu />
         <!-- END NAV -->
         <div class="container">
             <div class="columns">
@@ -55,7 +42,7 @@ async function createSelectedUser() {
         prenom: user_prenom.value,
         email: user_email.value
     }
-    
+
     let createUserPromise = await createUser(body)
     if (createUserPromise.statusCode === 500) {
         Swal.fire({
@@ -65,7 +52,7 @@ async function createSelectedUser() {
             confirmButtonText: 'Suivant'
         })
     }
-    else{
+    else {
         Swal.fire({
             title: 'L\'utilisateur a bien été créer',
             icon: 'success',

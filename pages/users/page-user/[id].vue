@@ -1,19 +1,6 @@
 <template>
     <section>
-        <nav class="navbar is-white">
-            <div class="container">
-                <div class="navbar-brand">
-                    <p class="navbar-item brand-text">
-                        NWS Admin
-                    </p>
-                    <div class="navbar-burger burger" data-target="navMenu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <HamburgerMenu />
         <!-- END NAV -->
         <div class="container">
             <div class="columns">
@@ -32,7 +19,8 @@
                         <div class="control mt-4">
                             <input class="input is-rounded" type="email" v-model="user_email">
                         </div>
-                        <button class="button is-link is-rounded mt-5" @click=updateSelectedUser()>Mettre à jour</button>
+                        <button class="button is-link is-rounded mt-5" @click=updateSelectedUser()>Mettre à
+                            jour</button>
                     </div>
                 </div>
             </div>
@@ -51,14 +39,14 @@ let user = ref([])
 const user_nom = ref('')
 const user_prenom = ref('')
 const user_email = ref('')
-    onMounted(async () => {
-        user.value = await getUser(id)
-        user_nom.value = user.value.nom
-        user_prenom.value = user.value.prenom
-        user_email.value = user.value.email
-    })
+onMounted(async () => {
+    user.value = await getUser(id)
+    user_nom.value = user.value.nom
+    user_prenom.value = user.value.prenom
+    user_email.value = user.value.email
+})
 
-async function updateSelectedUser(){
+async function updateSelectedUser() {
     let body = {
         nom: user_nom.value,
         prenom: user_prenom.value,

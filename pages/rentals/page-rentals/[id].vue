@@ -1,19 +1,6 @@
 <template>
     <section>
-        <nav class="navbar is-white">
-            <div class="container">
-                <div class="navbar-brand">
-                    <p class="navbar-item brand-text">
-                        NWS Admin
-                    </p>
-                    <div class="navbar-burger burger" data-target="navMenu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <HamburgerMenu />
         <!-- END NAV -->
         <div class="container">
             <div class="columns">
@@ -45,7 +32,8 @@
                         <div class="control mt-4">
                             <input class="input is-rounded" type="date" v-model="endingRentals">
                         </div>
-                        <button class="button is-link is-rounded mt-5" @click="updateSelectedRental()">Mettre à jour</button>
+                        <button class="button is-link is-rounded mt-5" @click="updateSelectedRental()">Mettre à
+                            jour</button>
                     </div>
                 </div>
             </div>
@@ -104,7 +92,7 @@ async function updateSelectedRental() {
             confirmButtonText: 'Suivant'
         })
     }
-    else if (createRentalPromise.statusCode === 500){
+    else if (createRentalPromise.statusCode === 500) {
         Swal.fire({
             title: 'Impossible de mettre à jour la location',
             text: 'Aucun utilisateur trouvé',
