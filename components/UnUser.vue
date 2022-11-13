@@ -1,12 +1,12 @@
 <template>
     <tr class="is-large">
-        <td>{{ user.id }}</td>
-        <td>{{ user.nom }}</td>
-        <td>{{ user.prenom }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.createdAt }}</td>
-        <td>{{ user.updatedAt }}</td>
-        <td><ActionsUsers :user="user"/></td>
+        <td class="is-vcentered">{{ user.id }}</td>
+        <td class="is-vcentered">{{ user.nom }}</td>
+        <td class="is-vcentered">{{ user.prenom }}</td>
+        <td class="is-vcentered">{{ user.email }}</td>
+        <td class="is-vcentered">{{ user.createdAt }}</td>
+        <td class="is-vcentered">{{ user.updatedAt }}</td>
+        <td class="is-vcentered"><ActionsUsers :user="user"/></td>
     </tr>
 </template>
 

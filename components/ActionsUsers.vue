@@ -1,15 +1,11 @@
 <template>
-    <div class="is-flex">
-        <td class="level-right">
+    <div class="is-flex is-vcentered">
             <nuxt-link @click="deleteSelectedUser(user.id)">
-                <a class="button is-small is-primary">Supprimer</a>
+                <a class="button is-small is-link">Supprimer</a>
             </nuxt-link>
-       </td>
-       <td class="level-right">
         <nuxt-link :to="`users/page-user/${user.id}`">
-            <a class="button is-small is-primary">Update</a>
+            <a class="button is-small is-link ml-4">Update</a>
         </nuxt-link>
-        </td>
     </div>
 </template>
 

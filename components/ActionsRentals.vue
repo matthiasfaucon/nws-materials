@@ -1,20 +1,14 @@
 <template>
   <div class="is-flex">
-    <td class="level-right">
       <nuxt-link :to="`rentals/page-rentals/${rental.id}`">
-        <a class="button is-small is-primary">Mettre à jour</a>
+        <a class="button is-small is-link">Mettre à jour</a>
       </nuxt-link>
-    </td>
-    <td class="level-right">
       <nuxt-link @click="deleteSelectedRentals(rental)">
-        <a class="button is-small is-primary">Rendre</a>
+        <a class="button is-small is-link ml-4">Rendre</a>
       </nuxt-link>
-    </td>
-    <td class="level-right">
       <nuxt-link @click="relanceSelectedrental(rental)">
-        <a class="button is-small is-primary">Relance</a>
+        <a class="button is-small is-link ml-4">Relance</a>
       </nuxt-link>
-    </td>
   </div>
 </template>
 

@@ -4,17 +4,7 @@
       <div class="card">
         <div class="card-table">
           <table class="table">
-            <thead>
-              <tr>
-                <th width="3%">ID</th>
-                <th width="5%">Nom</th>
-                <th width="5%">Prénom</th>
-                <th width="8%">E-mail</th>
-                <th width="5%">Date création</th>
-                <th width="5%">Date modification</th>
-                <th width="8%">Actions</th>
-              </tr>
-            </thead>
+            <HeaderListingUsers />
             <tbody class="is-large">
               <UnUser :user="user" v-for="user in useUsers.$state.users" />
             </tbody>
