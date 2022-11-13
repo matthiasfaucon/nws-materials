@@ -4,7 +4,6 @@ import { env } from "process";
 
 export default defineEventHandler(async (event) => {
     const { emailUser, denominationMaterial, beginingRentals, endingRentals } = await readBody(event)
-    console.log(emailUser)
     const client = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -19,5 +18,4 @@ export default defineEventHandler(async (event) => {
         text: `Votre réservation pour l'équipement suivant: ${denominationMaterial}, débutera le ${beginingRentals} et se finira le ${endingRentals}`,
         html: `<p>Votre réservation pour l'équipement suivant: <b>${denominationMaterial}</b>, débutera le <b>${beginingRentals}</b> et se finira le <b>${endingRentals}</b></p>`
     })
-    console.log(res)
 })

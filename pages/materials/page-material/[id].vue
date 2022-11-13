@@ -38,8 +38,6 @@ const material_quantite = ref('')
         material.value = await getMaterial(id)
         material_denomination.value = material.value.denomination
         material_quantite.value = material.value.quantite
-        // material_location.value = material.value.rentals
-        // console.log(material.value)
     })
 
 async function updateSelectedMateriel(){
@@ -47,7 +45,6 @@ async function updateSelectedMateriel(){
         denomination: material_denomination.value,
         quantite: material_quantite.value,
     }
-    // console.log(body)
     let createMaterialPromise = await updateMaterial(id, body)
     if (createMaterialPromise.statusCode === 500) {
         Swal.fire({

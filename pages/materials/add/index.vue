@@ -38,7 +38,6 @@ async function createNewMaterial() {
         denomination: material_denomination.value,
         quantite: material_quantite.value,
     }
-    //    console.log(body)
     let createMaterialPromise = await createMaterial(body)
     if (createMaterialPromise.statusCode === 500) {
         Swal.fire({
@@ -50,7 +49,7 @@ async function createNewMaterial() {
     }
     else{
         Swal.fire({
-            title: 'L\'équipement a bien été créer',
+            title: 'L\'équipement a bien été créé',
             icon: 'success',
             confirmButtonText: 'Suivant'
         })

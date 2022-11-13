@@ -21,18 +21,17 @@ const users = ref([])
 
 async function deleteSelectedUser(id){
     let createUserPromise = await deleteUser(id)
-    console.log(createUserPromise)
     if (createUserPromise.statusCode === 500) {
         Swal.fire({
             title: 'Impossible de supprimer l\'utilisateur',
-            text: 'L\'utilisateur est associé à une location, veuillez donc supprimez la location avant de supprimer cet utilisateur',
+            text: 'L\'utilisateur est associé à une location, veuillez donc supprimer la location avant de supprimer cet utilisateur',
             icon: 'error',
             confirmButtonText: 'Suivant'
         })
     }
     else{
         Swal.fire({
-            title: 'L\'utilisateur a bien été supprimer',
+            title: 'L\'utilisateur a bien été supprimé',
             icon: 'success',
             confirmButtonText: 'Suivant'
         })

@@ -94,7 +94,6 @@ describe('Should test the CRUD for the materials', async () => {
     let denomination = faker.commerce.productName()
     let material = await getMaterial(6)
     let materialUpdated = await updateMaterial(6, {denomination: denomination, quantite: quantite})
-    console.log(materialUpdated)
     expect(materialUpdated).not.toBe(material)
     expect(materialUpdated).toContain({
       denomination: denomination, 
@@ -105,7 +104,6 @@ describe('Should test the CRUD for the materials', async () => {
   it('Should delete one material', async () => {
     await deleteMaterial(7)
     let materialAfterDeleting = await getMaterial(7)
-    console.log(await getMaterial(7))
     expect(materialAfterDeleting).toContain({
       url: '/api/materials/7',
       statusCode: 500,
@@ -161,8 +159,6 @@ describe('Should test the CRUD for the rentals', async () => {
     let beginingRentals = faker.date.past()
     let endingRentals = faker.date.future()
     let rentalUpdated = await updateRental(6, {materialsId: materialsId, userId: userId, beginingRentals: beginingRentals, endingRentals: endingRentals})
-    console.log(materialsId)
-    console.log(userId)
     expect(rentalUpdated).not.toBe(rental)
     expect(rentalUpdated).toContain({
       materialsId: materialsId, 
@@ -173,7 +169,6 @@ describe('Should test the CRUD for the rentals', async () => {
   it('Should delete one rental', async () => {
     await deleteRental(3)
     let materialAfterDeleting = await getRental(3)
-    console.log(await getRental(3))
     expect(materialAfterDeleting).toContain({
       url: '/api/rentals/3',
       statusCode: 500,

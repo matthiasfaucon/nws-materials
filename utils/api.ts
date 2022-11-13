@@ -6,7 +6,6 @@ async function getUsers() {
             headers: { 'Content-Type': 'application/json' },
         })
         datas = await res.json()
-        console.log(datas)
     } catch (error) {
         console.error(error)
     }
@@ -21,7 +20,6 @@ async function getUser(id) {
             headers: { 'Content-Type': 'application/json' },
         })
         datas = await res.json()
-        console.log(datas)
     } catch (error) {
         console.error(error)
     }
@@ -37,7 +35,6 @@ async function createUser(body) {
             body: JSON.stringify({prenom: body.prenom, nom: body.nom, email: body.email})
         })
         datas = await res.json()
-        console.log(datas)
     } catch (error) {
         console.error(error)
     }
@@ -53,7 +50,6 @@ async function updateUser(id, body) {
             body: JSON.stringify({prenom: body.prenom, nom: body.nom, email: body.email})
         })
         datas = await res.json()
-        console.log(datas)
     } catch (error) {
         console.error(error)
     }
@@ -68,7 +64,6 @@ async function deleteUser(id) {
             headers: { 'Content-Type': 'application/json' },
         })
         datas = await res.json()
-        console.log(datas)
     } catch (error) {
         console.error(error)
     }
@@ -83,7 +78,6 @@ async function getMaterials() {
             headers: { 'Content-Type': 'application/json' },
         })
         datas = await res.json()
-        console.log(datas)
     } catch (error) {
         console.error(error)
     }
@@ -98,7 +92,6 @@ async function getMaterial(id) {
             headers: { 'Content-Type': 'application/json' },
         })
         datas = await res.json()
-        console.log(datas)
     } catch (error) {
         console.error(error)
     }
@@ -114,7 +107,6 @@ async function createMaterial(body) {
             body: JSON.stringify({denomination: body.denomination, quantite: body.quantite})
         })
         datas = await res.json()
-        console.log(datas)
     } catch (error) {
         console.error(error)
     }
@@ -130,7 +122,6 @@ async function updateMaterial(id, body) {
             body: JSON.stringify({denomination: body.denomination, quantite: body.quantite, availability: body.availability})
         })
         datas = await res.json()
-        console.log(datas)
     } catch (error) {
         console.error(error)
     }
@@ -145,7 +136,6 @@ async function deleteMaterial(id) {
             headers: { 'Content-Type': 'application/json' },
         })
         datas = await res.json()
-        console.log(datas)
     } catch (error) {
         console.error(error)
     }
@@ -160,7 +150,6 @@ async function getRentals() {
             headers: { 'Content-Type': 'application/json' },
         })
         datas = await res.json()
-        console.log(datas)
     } catch (error) {
         console.error(error)
     }
@@ -175,7 +164,6 @@ async function getRental(id) {
             headers: { 'Content-Type': 'application/json' },
         })
         datas = await res.json()
-        console.log(datas)
     } catch (error) {
         console.error(error)
     }
@@ -191,7 +179,6 @@ async function createRental(body) {
             body: JSON.stringify({userId: body.userId, materialsId: body.materialsId, beginningRentals: body.beginningRentals, endingRentals: body.endingRentals})
         })
         datas = await res.json()
-        console.log(datas)
     } catch (error) {
         console.error(error)
     }
@@ -200,7 +187,6 @@ async function createRental(body) {
 
 async function updateRental(id, body) {
     let datas = []
-    console.log(id, body)
     try {
         const res = await fetch(`${location.origin}/api/rentals/${id}`, {
             method: 'PATCH',
@@ -208,7 +194,6 @@ async function updateRental(id, body) {
             body: JSON.stringify({materialsId: body.materialsId, userId: body.userId, beginingRentals: body.beginingRentals, endingRentals: body.endingRentals})
         })
         datas = await res.json()
-        console.log(datas)
     } catch (error) {
         console.error(error)
     }
@@ -223,7 +208,6 @@ async function deleteRental(id) {
             headers: { 'Content-Type': 'application/json' },
         })
         datas = await res.json()
-        console.log(datas)
     } catch (error) {
         console.error(error)
     }
@@ -239,7 +223,6 @@ async function sendMailUser(body) {
             body: JSON.stringify({emailUser: body.userData.emailUser, denominationMaterial: body.materialData.denominationMaterial, beginingRentals: body.rentalData.beginingRentals, endingRentals: body.rentalData.endingRentals})
         })
         email = await res.json()
-        console.log(email)
     } catch (error) {
         console.error(error)
     }
@@ -255,7 +238,6 @@ async function sendMailRelanceUser(body) {
             body: JSON.stringify({emailUser: body.userData.emailUser, denominationMaterial: body.materialData.denominationMaterial, beginingRentals: body.rentalData.beginingRentals, endingRentals: body.rentalData.endingRentals})
         })
         email = await res.json()
-        console.log(email)
     } catch (error) {
         console.error(error)
     }

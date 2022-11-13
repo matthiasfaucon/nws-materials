@@ -12,10 +12,7 @@
 
 <script setup>
 const props = defineProps(['user'])
-// console.log(props)
 </script>
-
-<!-- https://github.com/prisma/prisma -->
 
 <style scoped>
 

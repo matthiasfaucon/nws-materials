@@ -11,10 +11,7 @@
 
 <script setup>
 const props = defineProps(['material'])
-// console.log(props)
 </script>
-
-<!-- https://github.com/prisma/prisma -->
 
 <style scoped>
 </style>

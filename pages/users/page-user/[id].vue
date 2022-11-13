@@ -52,7 +52,6 @@ async function updateSelectedUser() {
         prenom: user_prenom.value,
         email: user_email.value
     }
-    console.log(body)
     updateUser(id, body)
 }
 </script>

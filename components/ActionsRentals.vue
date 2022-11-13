@@ -42,7 +42,7 @@ async function deleteSelectedRentals(rental) {
       rentals: rentals.value
     })
     Swal.fire({
-      title: 'La location a bien été supprimer',
+      title: 'La location a bien été supprimé',
       icon: 'success',
       confirmButtonText: 'Suivant'
     })

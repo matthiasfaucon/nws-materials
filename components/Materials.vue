@@ -30,7 +30,4 @@ onMounted(async () => {
         materials: materials.value
     })
 })
-
-    // let el = computed (() => users.el.value)
-    // console.log(el)
 </script>

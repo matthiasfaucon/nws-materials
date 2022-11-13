@@ -22,18 +22,17 @@ const materials = ref([])
 
 async function deleteSelectedMaterial(id){
     let createMaterialPromise = await deleteMaterial(id)
-    console.log(createMaterialPromise)
     if (createMaterialPromise.statusCode === 500) {
         Swal.fire({
             title: 'Impossible de supprimer l\'équipement',
-            text: 'L\'équipement est associé à une location, veuillez donc supprimez la location avant de supprimer cet équipement',
+            text: 'L\'équipement est associé à une location, veuillez donc supprimer la location avant de supprimer cet équipement',
             icon: 'error',
             confirmButtonText: 'Suivant'
         })
     }
     else{
         Swal.fire({
-            title: 'L\'équipement a bien été supprimer',
+            title: 'L\'équipement a bien été supprimé',
             icon: 'success',
             confirmButtonText: 'Suivant'
         })

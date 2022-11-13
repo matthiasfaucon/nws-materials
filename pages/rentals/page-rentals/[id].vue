@@ -49,9 +49,6 @@ import { setFormatDate } from '../../../utils/utils';
 const route = useRoute()
 const id = route.params.id
 
-
-console.log(id)
-
 let rental = ref([])
 const rental_material = ref('')
 const rental_ID_material = ref('')
@@ -83,11 +80,10 @@ async function updateSelectedRental() {
         endingRentals: new Date(endingRentals.value).toISOString()
     }
     let createRentalPromise = await updateRental(id, body)
-    console.log(createRentalPromise)
     if (createRentalPromise.statusCode === 400 || !body.materialsId || !body.userId || !body.beginingRentals || !body.endingRentals) {
         Swal.fire({
             title: 'Impossible de mettre à jour la location',
-            text: 'Le matériel sélectionné est déjà loué',
+            text: 'L\'équipement sélectionné est déjà loué',
             icon: 'error',
             confirmButtonText: 'Suivant'
         })

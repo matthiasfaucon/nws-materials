@@ -54,7 +54,7 @@ async function createSelectedUser() {
     }
     else {
         Swal.fire({
-            title: 'L\'utilisateur a bien été créer',
+            title: 'L\'utilisateur a bien été créé',
             icon: 'success',
             confirmButtonText: 'Suivant'
         })

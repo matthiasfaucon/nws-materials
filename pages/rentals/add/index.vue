@@ -57,20 +57,16 @@ const rental_user = ref('')
 const rental_ID_user = ref(5)
 const beginingRentals = ref(new Date().toISOString().split('T')[0])
 const endingRentals = ref(new Date().toISOString().split('T')[0])
-//    console.log(beginingRentals)
 const materials = ref([])
 const users = ref([])
 onMounted(async () => {
     materials.value = await getMaterials()
     users.value = await getUsers()
-    //    beginingRentals.value = rental.value.beginingRentals.split('T')[0]
-    //    endingRentals.value = rental.value.endingRentals.split('T')[0]
 })
 
 
 
 async function createNewRental() {
-    //    console.log(new Date(beginingRentals.value).toISOString())
     let bodyRental = {
         materialsId: rental_ID_material.value,
         userId: rental_ID_user.value,
@@ -81,7 +77,6 @@ async function createNewRental() {
         availability : "RENTED"
     }
     let createRentalPromise = await createRental(bodyRental)
-    console.log(createRentalPromise)
     if (createRentalPromise.statusCode === 400) {
         Swal.fire({
             title: 'Impossible de créer la location',
@@ -94,7 +89,6 @@ async function createNewRental() {
         await updateMaterial(rental_ID_material.value, bodyMaterial)
         let user = await getUser(rental_ID_user.value)
         let material = await getMaterial(rental_ID_material.value)
-        console.log(user)
         let body = {
             userData: {
                 emailUser: user.email
@@ -107,10 +101,9 @@ async function createNewRental() {
                 endingRentals: endingRentals.value
             }
         }
-        console.log(body)
         sendMailUser(body)
         Swal.fire({
-            title: 'La location a bien été créer',
+            title: 'La location a bien été créé',
             icon: 'success',
             confirmButtonText: 'Suivant'
         })

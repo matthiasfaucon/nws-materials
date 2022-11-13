@@ -5,7 +5,6 @@ const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
     const { id } = getRouterParams(event)
-    console.log(id)
     const { materialsId, userId, beginingRentals, endingRentals } = await readBody(event)
     let rental = {
         materialsId: materialsId,

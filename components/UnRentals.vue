@@ -16,10 +16,7 @@ import { setFormatDate  } from "../utils/utils";
 const props = defineProps(['rental'])
 let beginingRentals = setFormatDate(new Date(props.rental.beginingRentals))
 let endingRentals = setFormatDate(new Date(props.rental.endingRentals))
-// console.log(props)
 </script>
-
-<!-- https://github.com/prisma/prisma -->
 
 <style scoped>
 </style>
