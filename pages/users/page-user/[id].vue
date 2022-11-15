@@ -66,18 +66,17 @@ async function updateSelectedUser() {
     if (createUserPromise.statusCode === 500) {
         Swal.fire({
             title: 'Impossible de mettre à jour l\'utilisateur',
-            text: 'Cet utilisateur existe déjà',
+            text: 'Cet email existe déjà',
             icon: 'error',
             confirmButtonText: 'Suivant'
         })
     }
     else {
         Swal.fire({
-            title: 'L\'utiliasteur a été mis à jour',
+            title: 'L\'utilisateur a été mis à jour',
             icon: 'success',
             confirmButtonText: 'Suivant'
         })
     }
-    
 }
 </script>
