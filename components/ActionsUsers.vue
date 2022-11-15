@@ -4,7 +4,7 @@
                 <a class="button is-small is-link">Supprimer</a>
             </nuxt-link>
         <nuxt-link :to="`users/page-user/${user.id}`">
-            <a class="button is-small is-link ml-4">Update</a>
+            <a class="button is-small is-link ml-4">Mettre à jour</a>
         </nuxt-link>
     </div>
 </template>
