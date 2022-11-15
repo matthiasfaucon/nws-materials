@@ -37,7 +37,8 @@
     </section>
 </template>
 
-<script lang="ts" setup>import { computed, onMounted, ref } from 'vue';
+<script lang="ts" setup>import Swal from 'sweetalert2';
+import { computed, onMounted, ref } from 'vue';
 import { getUser, updateUser } from '../../../utils/api';
 
 const route = useRoute()
@@ -61,6 +62,22 @@ async function updateSelectedUser() {
         prenom: user_prenom.value,
         email: user_email.value
     }
-    updateUser(id, body)
+    let createUserPromise = await updateUser(id, body)
+    if (createUserPromise.statusCode === 500) {
+        Swal.fire({
+            title: 'Impossible de mettre à jour l\'utilisateur',
+            text: 'Cet utilisateur existe déjà',
+            icon: 'error',
+            confirmButtonText: 'Suivant'
+        })
+    }
+    else {
+        Swal.fire({
+            title: 'L\'utiliasteur a été mis à jour',
+            icon: 'success',
+            confirmButtonText: 'Suivant'
+        })
+    }
+    
 }
 </script>
