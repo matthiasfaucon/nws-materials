@@ -5,6 +5,7 @@ on: [push]
 
 jobs:
   build:
+    needs: [build-docker]
     runs-on: ubuntu-latest
     strategy:
       matrix:
