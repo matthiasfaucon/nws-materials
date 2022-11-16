@@ -1,9 +1,7 @@
 name: Runs All Unit tests
 run-name: Build and Tests
 
-on:
-  push:
-    branches: [ci-cd]
+on: [push]
 
 jobs:
   build:
@@ -32,7 +30,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push TO Github Repository
+      - name: Build and push to Github Repository
         uses: docker/build-push-action@v3
         with:
           push: true
