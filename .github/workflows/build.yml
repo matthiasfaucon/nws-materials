@@ -20,7 +20,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: nws-material:latest
+          tags: ghcr.io/matthiasfaucon/nws-material:latest
           target: nws-material
   build:
     runs-on: ubuntu-latest
