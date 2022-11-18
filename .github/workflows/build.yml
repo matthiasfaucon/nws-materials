@@ -51,3 +51,25 @@ jobs:
           push: true # push image dans le Github Registry
           tags: ghcr.io/matthiasfaucon/nws-material:latest # mettre un tag à l'image dans le Github Registry
           target: nws-material # sélectionner le Dockerfile
+  test:
+    needs: [build-docker]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Cache node_modules
+        id: cache-node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json') }}
+      - name: Cache .nuxt
+        id: cache-nuxt
+        uses: actions/cache@v3
+        with:
+          path: .nuxt
+          key: ${{ runner.os }}-nuxt-${{ github.run_id }}
+      - run: |
+          docker compose up --build -d
+          npm run test
