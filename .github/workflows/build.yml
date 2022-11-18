@@ -3,6 +3,11 @@ run-name: Build and Tests
 
 on: [push]
 
+env:
+  DATABASE_URL: ${{ DATABASE_URL }}
+  DB_PASSWORD: ${{ DB_PASSWORD }}
+  GMAIL_APP_PASSWORD: ${{ GMAIL_APP_PASSWORD }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
