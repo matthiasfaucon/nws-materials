@@ -8,13 +8,18 @@ jobs:
     steps:
       - run: |
           mkdir -p ~/.ssh
-          ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/know_hosts
-          chmod 644 ~/.ssh/know_hosts
-
+          ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+      
       - uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
+      
+      # Mode sale
+      # - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "git pull"
+      # - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose up -d --build"
 
-      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.GITHUB_HOST }} "ls"
-      # - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.GITHUB_HOST }} "git pull"
-      # - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.GITHUB_HOST }} "docker compose up -d --build"
+      # Mode propre
+      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose -f docker-compose.prod.yml pull"
+      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose -f docker-compose.prod.yml up -d"
+      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker image prune -f"

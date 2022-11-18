@@ -1,6 +1,8 @@
 name: Runs All Unit tests
 run-name: Build and Tests
+
 on: [push]
+
 jobs:
   build:
     needs: [build-docker]
@@ -15,7 +17,6 @@ jobs:
       - run: |
           npm i
           npm run build
-          npm run test
   build-docker:
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
@@ -36,3 +37,15 @@ jobs:
           push: true # push image dans le Github Registry
           tags: ghcr.io/matthiasfaucon/nws-material:latest # mettre un tag à l'image dans le Github Registry
           target: nws-material # sélectionner le Dockerfile
+  test:
+    needs: [build-docker]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+      - run: |
+          npm run test
