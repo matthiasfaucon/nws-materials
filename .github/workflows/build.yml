@@ -20,9 +20,9 @@ jobs:
           npm run test
   build-docker:
     env:
-      - ${{ secrets.DATABASE_URL }}
-      - ${{ secrets.DB_PASSWORD }}
-      - ${{ secrets.GMAIL_APP_PASSWORD }}
+      ${{ secrets.DATABASE_URL }}
+      ${{ secrets.DB_PASSWORD }}
+      ${{ secrets.GMAIL_APP_PASSWORD }}
     runs-on: ubuntu-latest
     steps:
       - name: Login to Github Container Registry
