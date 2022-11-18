@@ -21,6 +21,9 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json') }}
+        with:
+          path: .nuxt
+          key: ${{ runner.os }}-nuxt
       - run: |
           npm ci
           npm run build
@@ -58,5 +61,8 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json') }}
+        with:
+          path: .nuxt
+          key: ${{ runner.os }}-nuxt
       - run: |
           npm run test
