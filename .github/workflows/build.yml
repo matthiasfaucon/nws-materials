@@ -30,7 +30,7 @@ jobs:
       - run: |
           npx prisma migrate deploy
   build-docker:
-    [build, build-prisma]
+    needs: [build, build-prisma]
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
