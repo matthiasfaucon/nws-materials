@@ -1,0 +1,20 @@
+name: Deploy
+
+on: workflow_dispatch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/know_hosts
+          chmod 644 ~/.ssh/know_hosts
+
+      - uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.GITHUB_HOST }} "ls"
+      # - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.GITHUB_HOST }} "git pull"
+      # - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.GITHUB_HOST }} "docker compose up -d --build"

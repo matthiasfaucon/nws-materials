@@ -19,8 +19,6 @@ jobs:
           npm run build
           npm run test
   build-docker:
-    environment:
-      .env
     runs-on: ubuntu-latest
     steps:
       - name: Login to Github Container Registry
