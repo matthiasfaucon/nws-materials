@@ -21,20 +21,8 @@ jobs:
       - run: |
           npm i
           npm run build
-  build-prisma:
-    needs: [build]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: "npm"
-      - run: |
-          npx prisma migrate deploy
   build-docker:
-    needs: [build-prisma]
+    needs: [build]
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
@@ -54,6 +42,18 @@ jobs:
           push: true # push image dans le Github Registry
           tags: ghcr.io/matthiasfaucon/nws-material:latest # mettre un tag à l'image dans le Github Registry
           target: nws-material # sélectionner le Dockerfile
+  build-prisma:
+    needs: [build-docker]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+      - run: |
+          npx prisma migrate deploy
   test:
     needs: [build-docker]
     runs-on: ubuntu-latest
