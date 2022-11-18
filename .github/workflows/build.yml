@@ -22,11 +22,11 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json') }}
       - name: Cache .nuxt
-        id: cache-node_modules
+        id: cache-nuxt
         uses: actions/cache@v3
         with:
           path: .nuxt
-          key: ${{ runner.os }}-nuxt
+          key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run: |
           npm ci
           npm run build
@@ -65,10 +65,10 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json') }}
       - name: Cache .nuxt
-        id: cache-node_modules
+        id: cache-nuxt
         uses: actions/cache@v3
         with:
           path: .nuxt
-          key: ${{ runner.os }}-nuxt
+          key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run: |
           npm run test
