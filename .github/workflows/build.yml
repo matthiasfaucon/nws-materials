@@ -1,8 +1,6 @@
 name: Runs All Unit tests
 run-name: Build and Tests
-
 on: [push]
-
 jobs:
   build:
     needs: [build-docker]
