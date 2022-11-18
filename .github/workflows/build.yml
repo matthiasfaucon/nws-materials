@@ -4,9 +4,9 @@ run-name: Build and Tests
 on: [push]
 
 env:
-  DATABASE_URL: ${{ DATABASE_URL }}
-  DB_PASSWORD: ${{ DB_PASSWORD }}
-  GMAIL_APP_PASSWORD: ${{ GMAIL_APP_PASSWORD }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
 
 jobs:
   build:
