@@ -1,17 +1,13 @@
 name: Runs All Unit tests
 run-name: Build and Tests
-
 on: [push]
-
 env:
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
   GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -44,13 +40,19 @@ jobs:
           registry: ghcr.io # lien pour registry github
           username: ${{ github.actor }} # actor github
           password: ${{ secrets.GITHUB_TOKEN }} # Génère un token de Github
-
       - name: Build and push to Github Repository
         uses: docker/build-push-action@v3
         with:
           push: true # push image dans le Github Registry
           tags: ghcr.io/matthiasfaucon/nws-material:latest # mettre un tag à l'image dans le Github Registry
           target: nws-material # sélectionner le Dockerfile
+  test:
+    needs: [build-docker]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
       - name: Cache node_modules
         id: cache-node_modules
         uses: actions/cache@v3
@@ -64,4 +66,5 @@ jobs:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run: |
+          docker compose up --build -d
           npm run test
