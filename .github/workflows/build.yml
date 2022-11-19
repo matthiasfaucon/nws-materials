@@ -66,5 +66,5 @@ jobs:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run: |
-          docker compose up --build -d
+          npm ci
           npm run test
