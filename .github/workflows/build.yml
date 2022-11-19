@@ -51,10 +51,10 @@ jobs:
           push: true # push image dans le Github Registry
           tags: ghcr.io/matthiasfaucon/nws-material:latest # mettre un tag à l'image dans le Github Registry
           target: nws-material # sélectionner le Dockerfile
+      - run: docker compose up --build -d
   test:
     needs: [build-docker]
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -71,5 +71,4 @@ jobs:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run: |
-          docker compose up --build -d
           npm run test
