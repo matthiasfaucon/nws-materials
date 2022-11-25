@@ -66,7 +66,7 @@ jobs:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run:
-          npm run test
+          npx prisma studio
   test:
     needs: [prisma]
     runs-on: ubuntu-latest
@@ -87,5 +87,5 @@ jobs:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run:
-          npx prisma deploy
+          npm run test
   
