@@ -28,7 +28,7 @@
                             </div>
                             <div class="select is-rounded">
                                 <select v-model="rental_ID_user">
-                                    <option :selected="user.id === rental_ID_user" v-for="user in users"
+                                    <option :selected="user.id === rental_ID_user" v-for="user in useUsers.$state.users"
                                         :value="user.id">{{
                                                 `${user.nom} ${user.prenom}`
                                         }}</option>
@@ -55,10 +55,19 @@ import { createRental, getUsers, getMaterials, updateRental, updateMaterial, sen
 import { setFormatDate } from '../../../utils/utils';
 import { getUser } from '~~/utils/api';
 import Swal from 'sweetalert2'
+import { useUsersStore } from '@/store/users';
 import { create } from 'domain';
 
 const route = useRoute()
 const id = route.params.id
+const useUsers = useUsersStore()
+
+const users = ref([])
+users.value = await getUsersApi()
+await useUsers.$patch({
+  users: users.value
+})
+
 
 const rental_material = ref('')
 const rental_ID_material = ref(5)
@@ -67,10 +76,9 @@ const rental_ID_user = ref(5)
 const beginingRentals = ref(new Date().toISOString().split('T')[0])
 const endingRentals = ref(new Date().toISOString().split('T')[0])
 const materials = ref([])
-const users = ref([])
 onMounted(async () => {
     materials.value = await getMaterials()
-    users.value = await getUsers()
+    // users.value = await getUsers()
 })
 
 

@@ -15,4 +15,18 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
   ],
+  routes: { '/': { prerender: true }, '/*': { cors: true } },
+  vite: {
+    server: {
+      proxy: {
+        '/users': { 
+          target: 'http://vps-a47222b1.vps.ovh.net:4242/Student',
+          headers: { "Access-Control-Allow-Headers": '*',
+          "Access-Control-Expose-Headers": '*'},
+          changeOrigin: true 
+        }
+      }
+    },
+  },
+  
 })

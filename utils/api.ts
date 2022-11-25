@@ -1,3 +1,16 @@
+import { mode } from "process"
+
+async function getUsersApi() {
+    let datas = []
+    try {
+        const res = await fetch(`http://localhost:3000/api/usersApi`)
+        datas = await res.json()
+    } catch (error) {
+        console.error(error)
+    }
+    return datas
+}
+
 async function getUsers() {
     let datas = []
     try {
@@ -33,6 +46,21 @@ async function createUser(body) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({prenom: body.prenom, nom: body.nom, email: body.email})
+        })
+        datas = await res.json()
+    } catch (error) {
+        console.error(error)
+    }
+    return datas
+}
+
+async function createUsers(body) {
+    let datas = []
+    try {
+        const res = await fetch(`http://localhost:3000/api/usersApi`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({data: body.data})
         })
         datas = await res.json()
     } catch (error) {
@@ -244,4 +272,4 @@ async function sendMailRelanceUser(body) {
     return email
 }
 
-export { getUsers, getUser, createUser, updateUser, deleteUser, getMaterials, getMaterial, createMaterial, updateMaterial, deleteMaterial, getRentals, getRental, createRental, updateRental, deleteRental, sendMailUser, sendMailRelanceUser}
+export { getUsersApi, getUsers, getUser, createUser, createUsers, updateUser, deleteUser, getMaterials, getMaterial, createMaterial, updateMaterial, deleteMaterial, getRentals, getRental, createRental, updateRental, deleteRental, sendMailUser, sendMailRelanceUser}

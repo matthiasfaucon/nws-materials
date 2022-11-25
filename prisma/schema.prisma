@@ -10,11 +10,11 @@ datasource db {
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 model Users {
   id        Int       @id @default(autoincrement())
-  nom       String    @db.VarChar(255)
-  prenom    String    @db.VarChar(255)
-  email     String    @unique
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  // nom       String?    @db.VarChar(255)
+  // prenom    String?    @db.VarChar(255)
+  // email     String?    @unique
+  // createdAt DateTime?  @default(now())
+  // updatedAt DateTime?  @updatedAt
   Rentals   Rentals[]
 }
 

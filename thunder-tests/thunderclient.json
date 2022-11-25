@@ -214,5 +214,24 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "ca2a788c-900c-40ee-b7fb-f0f2e724854a",
+    "colId": "f8329c5d-96c9-4b35-b14c-a7cab4c9b90f",
+    "containerId": "",
+    "name": "Get All",
+    "url": "http://vps-a47222b1.vps.ovh.net:4242/Student",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-11-20T18:25:32.130Z",
+    "modified": "2022-11-20T19:53:23.661Z",
+    "headers": [
+      {
+        "name": "User-Agent",
+        "value": "http://localhost:3000"
+      }
+    ],
+    "params": [],
+    "tests": []
   }
 ]
