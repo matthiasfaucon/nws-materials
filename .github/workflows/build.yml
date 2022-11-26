@@ -3,6 +3,10 @@ run-name: Build and Tests
 
 on: [push]
 
+env:
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -62,7 +66,8 @@ jobs:
         with:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
-      - run:
+      - run: |
+          docker compose up --build -d
           npx prisma migrate deploy 
   test:
     needs: [prisma]
