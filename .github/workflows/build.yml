@@ -24,6 +24,7 @@ jobs:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run: |
+          node --version
           npm ci
           npm run build
   build-docker:
