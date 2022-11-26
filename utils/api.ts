@@ -1,4 +1,4 @@
-import { mode } from "process"
+import fetch from "node-fetch"
 
 async function getUsersApi() {
     let datas = []

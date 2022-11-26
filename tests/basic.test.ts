@@ -1,60 +1,60 @@
 import { describe, expect, expectTypeOf, it } from 'vitest'
-import { $fetch, isDev, setup } from '@nuxt/test-utils'
+import { setup } from '@nuxt/test-utils'
 import { getUsers, getUser, createUser, updateUser, deleteUser, getMaterials, getMaterial, createMaterial, updateMaterial, deleteMaterial, getRentals, getRental, createRental, updateRental, deleteRental } from "../utils/api"
 import { faker } from '@faker-js/faker';
 
-describe('Should test the CRUD for the users', async () => {
-  setup({
-    rootDir: "../",
-    server: true,
-    browser: true,
-    configFile: "../.env"
-  })
+// describe('Should test the CRUD for the users', async () => {
+//   setup({
+//     rootDir: "../",
+//     server: true,
+//     browser: true,
+//     configFile: "../.env"
+//   })
 
-  it('Should get users', async () => {
-    let users = await getUsers()
-    expectTypeOf(users).toBeArray()
-    expect(users.length).toBeGreaterThan(0)
-    // // expect(await $fetch('/users')).toBeDefined()
-  })
+//   it('Should get users', async () => {
+//     let users = await getUsers()
+//     expectTypeOf(users).toBeArray()
+//     expect(users.length).toBeGreaterThan(0)
+//     // // expect(await $fetch('/users')).toBeDefined()
+//   })
 
-  it('Should get one user', async () => {
-    let user = await getUser(5)
-    expect(user).toContain({
-        id: 5,
-      })
-      expectTypeOf(user).toBeObject()
-  })
+//   it('Should get one user', async () => {
+//     let user = await getUser(5)
+//     expect(user).toContain({
+//         id: 5,
+//       })
+//       expectTypeOf(user).toBeObject()
+//   })
 
-  it('Should create one user', async () => {
-    let prenom = faker.name.firstName()
-    let nom = faker.name.lastName()
-    let email = faker.internet.email()
+//   it('Should create one user', async () => {
+//     let prenom = faker.name.firstName()
+//     let nom = faker.name.lastName()
+//     let email = faker.internet.email()
 
-    let user = await createUser({prenom: prenom, nom: nom, email: email})
-    expect(user).toContain({
-      nom: nom,
-      prenom: prenom,
-      email: email,
-    })
-  })
+//     let user = await createUser({prenom: prenom, nom: nom, email: email})
+//     expect(user).toContain({
+//       nom: nom,
+//       prenom: prenom,
+//       email: email,
+//     })
+//   })
 
-  it('Should update one user', async () => {
-    let user = await getUser(6)
-    let userUpdated = await updateUser(6, {prenom: faker.name.firstName(), nom: faker.name.lastName(), email: faker.internet.email()})
-    expect(userUpdated).not.toBe(user)
-  })
+//   it('Should update one user', async () => {
+//     let user = await getUser(6)
+//     let userUpdated = await updateUser(6, {prenom: faker.name.firstName(), nom: faker.name.lastName(), email: faker.internet.email()})
+//     expect(userUpdated).not.toBe(user)
+//   })
 
-  it('Should delete one user', async () => {
-    await deleteUser(8)
-    let userAfterDeleting = await getUser(8)
-    expect(userAfterDeleting).toContain({
-      url: '/api/users/8',
-      statusCode: 500,
-      message: "No Users found",
-    })
-  })
-})
+//   it('Should delete one user', async () => {
+//     await deleteUser(8)
+//     let userAfterDeleting = await getUser(8)
+//     expect(userAfterDeleting).toContain({
+//       url: '/api/users/8',
+//       statusCode: 500,
+//       message: "No Users found",
+//     })
+//   })
+// })
 
 describe('Should test the CRUD for the materials', async () => {
   setup({
