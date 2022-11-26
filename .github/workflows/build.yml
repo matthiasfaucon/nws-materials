@@ -3,10 +3,6 @@ run-name: Build and Tests
 
 on: [push]
 
-env:
-  DATABASE_URL: ${{ secrets.DATABASE_URL }}
-  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-  GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,10 +26,6 @@ jobs:
           npm run build
   build-docker:
     needs: [build]
-    env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
     runs-on: ubuntu-latest
     steps:
       - name: Login to Github Container Registry
@@ -51,7 +43,10 @@ jobs:
   prisma:
     needs: [build-docker]
     runs-on: ubuntu-latest
-
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -68,7 +63,7 @@ jobs:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run:
-          nox prisma migrate dev 
+          npx prisma migrate dev 
   test:
     needs: [prisma]
     runs-on: ubuntu-latest
