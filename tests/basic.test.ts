@@ -2,7 +2,6 @@ import { describe, expect, expectTypeOf, it } from 'vitest'
 import { $fetch, isDev, setup } from '@nuxt/test-utils'
 import { getUsers, getUser, createUser, updateUser, deleteUser, getMaterials, getMaterial, createMaterial, updateMaterial, deleteMaterial, getRentals, getRental, createRental, updateRental, deleteRental } from "../utils/api"
 import { faker } from '@faker-js/faker';
-import { LogLevel } from 'consola';
 
 describe('Should test the CRUD for the users', async () => {
   setup({
