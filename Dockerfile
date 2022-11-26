@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY . /app
 RUN npm ci && npm run build
+RUN npx prisma migrate deploy
 
 ENV NUXT_PORT=3000
 
