@@ -68,7 +68,7 @@ jobs:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run:
-          npx prisma migrate deploy
+          nox prisma migrate dev 
   test:
     needs: [prisma]
     runs-on: ubuntu-latest
