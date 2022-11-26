@@ -11,6 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
+        with:
+          node-version: 18
       - name: Cache node_modules
         id: cache-node_modules
         uses: actions/cache@v3
