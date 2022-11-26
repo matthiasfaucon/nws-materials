@@ -1,4 +1,3 @@
-import { $fetch } from '@nuxt/test-utils';
 import fetch from 'node-fetch';
 
 async function getUsers() {
