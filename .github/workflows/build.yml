@@ -77,7 +77,7 @@ jobs:
           docker compose up --build -d
           npx prisma migrate deploy 
   test:
-    needs: [build-docker]
+    needs: [prisma]
     runs-on: ubuntu-latest
 
     steps:
