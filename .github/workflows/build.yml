@@ -76,6 +76,7 @@ jobs:
       - run: |
           docker compose up -d --build
           docker ps
+          docker logs --details -f --tail nws-materials-db-1
       - run:
           npx prisma migrate dev
   test:
