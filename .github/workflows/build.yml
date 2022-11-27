@@ -1,6 +1,5 @@
 name: Runs All Unit tests
 run-name: Build and Tests
-
 on: [push]
 
 env:
