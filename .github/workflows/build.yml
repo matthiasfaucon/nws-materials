@@ -1,5 +1,6 @@
 name: Runs All Unit tests
 run-name: Build and Tests
+
 on: [push]
 
 env:
@@ -75,7 +76,7 @@ jobs:
       - run: |
           docker compose up -d --build
           docker ps
-      - run: |
+      - run:
           npx prisma migrate dev
   test:
     needs: [prisma]
