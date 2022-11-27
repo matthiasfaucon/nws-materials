@@ -51,8 +51,6 @@ jobs:
           push: true # push image dans le Github Registry
           tags: ghcr.io/matthiasfaucon/nws-material:latest # mettre un tag à l'image dans le Github Registry
           target: nws-material # sélectionner le Dockerfile
-      - run: 
-          docker compose up -d --build
   prisma:
     needs: [build-docker]
     runs-on: ubuntu-latest
@@ -75,8 +73,10 @@ jobs:
         with:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
+      - run: 
+          docker compose up -d --build 
       - run: |
-          npx prisma migrate dev 
+          npx prisma migrate dev
   test:
     needs: [prisma]
     runs-on: ubuntu-latest
