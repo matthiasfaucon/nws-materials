@@ -51,7 +51,7 @@ jobs:
           push: true # push image dans le Github Registry
           tags: ghcr.io/matthiasfaucon/nws-material:latest # mettre un tag à l'image dans le Github Registry
           target: nws-material # sélectionner le Dockerfile
-        run: 
+      - run: 
           docker compose up -d --build
   prisma:
     needs: [build-docker]
