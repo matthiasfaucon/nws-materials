@@ -74,7 +74,7 @@ jobs:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run: |
-          docker compose up -d --build
+          docker compose up -d --build --force-recreate
           docker ps
           docker logs -f nws-materials-db-1
       - run:
