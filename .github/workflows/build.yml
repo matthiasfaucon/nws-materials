@@ -72,8 +72,9 @@ jobs:
         with:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
-      - run: 
-          docker compose up -d --build 
+      - run: |
+          docker compose up -d --build
+          docker ps
       - run: |
           npx prisma migrate dev
   test:
