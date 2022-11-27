@@ -76,8 +76,8 @@ jobs:
       - run: |
           docker compose up -d --build --force-recreate
           docker ps
-      - run:
-          npx prisma migrate dev --name test-ci
+          npx prisma migrate deploy
+          npx prisma migrate resolve
   test:
     needs: [prisma]
     runs-on: ubuntu-latest
