@@ -74,9 +74,8 @@ jobs:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run: |
-          docker compose up -d --build --force-recreate
           docker ps
-          docker exec nws-materials-db-1 sh -c "npm i && npx prisma migrate dev --name tests"
+          docker exec nws-materials-app-1 sh -c "npx prisma migrate dev --name init"
   test:
     needs: [prisma]
     runs-on: ubuntu-latest
