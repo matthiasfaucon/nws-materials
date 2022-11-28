@@ -77,7 +77,6 @@ jobs:
           docker compose up -d --build --force-recreate
           docker ps
           docker exec -d nws-materials-db-1 npx prisma migrate deploy
-          docker logs -f nws-materials-db-1
           npx prisma migrate deploy
           npx prisma migrate resolve
   test:
