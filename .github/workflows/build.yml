@@ -76,7 +76,7 @@ jobs:
       - run: |
           docker compose up -d --build --force-recreate
           docker ps
-          docker exec -i nws-materials-app-1 npx prisma migrate deploy
+          docker exec -i nws-materials-app-1 npx prisma migrate dev --name tests
   test:
     needs: [prisma]
     runs-on: ubuntu-latest
