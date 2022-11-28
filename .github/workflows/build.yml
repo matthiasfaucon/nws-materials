@@ -29,7 +29,7 @@ jobs:
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run: |
           node --version
-          npm ci
+          npm i
           npm run build
   build-docker:
     needs: [build]
@@ -99,5 +99,5 @@ jobs:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run: |
-          npm ci
+          npm i
           npm run test
