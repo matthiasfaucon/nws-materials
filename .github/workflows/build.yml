@@ -51,7 +51,7 @@ jobs:
           tags: ghcr.io/matthiasfaucon/nws-material:latest # mettre un tag à l'image dans le Github Registry
           target: nws-material # sélectionner le Dockerfile
   test:
-    needs: [prisma]
+    needs: [build-docker]
     runs-on: ubuntu-latest
 
     steps:
