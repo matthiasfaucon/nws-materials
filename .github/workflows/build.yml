@@ -76,6 +76,7 @@ jobs:
           docker ps
           sleep 30
           docker exec nws-materials-app-1 sh -c "npx prisma generate"
+          docker exec nws-materials-app-1 sh -c "npx prisma resolve --applied 20221112145011_init"
           docker exec nws-materials-app-1 sh -c "npx prisma migrate dev --name init"
   test:
     needs: [prisma]
