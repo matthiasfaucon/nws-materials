@@ -74,7 +74,7 @@ jobs:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run: |
-          docker compose up -d --build
+          docker compose -f docker-compose-ci.yml up -d --build
           docker ps
           sleep 30
           docker exec nws-materials-app-1 sh -c "npx prisma generate"
