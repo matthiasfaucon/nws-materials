@@ -78,7 +78,7 @@ jobs:
           docker ps
           sleep 30
           docker exec nws-materials-app-1 sh -c "npx prisma generate"
-          docker exec nws-materials-app-1 sh -c "npx prisma migrate dev --name init"
+          docker exec nws-materials-app-1 sh -c "npx prisma migrate db push"
   test:
     needs: [prisma]
     runs-on: ubuntu-latest
