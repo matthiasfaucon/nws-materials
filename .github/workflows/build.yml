@@ -77,7 +77,7 @@ jobs:
           docker compose up -d --build --force-recreate
           docker ps
           docker exec nws-materials-app-1 sh -c "npx prisma generate"
-          docker exec nws-materials-app-1 sh -c "npx prisma migrate dev --name init"
+          docker exec nws-materials-app-1 bash "npx prisma migrate dev --name init"
   test:
     needs: [prisma]
     runs-on: ubuntu-latest
