@@ -14,7 +14,7 @@ services:
       MYSQL_DATABASE: materiels
       MYSQL_USER: nws_app
       MYSQL_PASSWORD: "${DB_PASSWORD}"
-      MYSQL_RANDOM_ROOT_PASSWORD: true
+      MYSQL_ROOT_PASSWORD: 1234
     ports:
       - 3306:3306
     volumes:
