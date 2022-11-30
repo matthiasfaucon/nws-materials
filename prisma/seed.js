@@ -35,7 +35,6 @@ async function main() {
     for (let i = 0; i < Math.round(Math.random() * 10 + 20); i++){
         const beginingRentals = faker.date.past().toISOString()
         const endingRentals = faker.date.future().toISOString()
-        console.log(i)
         resultRentals = await prisma.rentals.create({
             data: {
                 userId: Number(i+1),
