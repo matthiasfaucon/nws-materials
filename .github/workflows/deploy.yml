@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   workflow_run:
-    workflows: ["build"]
+    workflows: [Runs All Unit tests]
     branches: [master]
     types:
       - completed    
