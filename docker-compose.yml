@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   app:
+    depends_on: [db]
     build: 
       dockerfile: Dockerfile
     environment:
@@ -20,6 +21,7 @@ services:
     volumes:
       - mysqldb-data:/var/lib/mysql
   reverse-proxy:
+    depends_on: [app]
     image: caddy
     restart: always
     ports:
@@ -29,6 +31,7 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy-data:/data
   phpmyadmin:
+    depends_on: [reverse-proxy]
     image: phpmyadmin
     restart: always
     environment:
