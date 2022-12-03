@@ -1,10 +1,19 @@
-import { mode } from "process"
-
 async function getUsersApi() {
     let datas = []
+    let body  = []
     try {
         const res = await fetch(`http://localhost:3000/api/usersApi`)
         datas = await res.json()
+        datas.forEach(user => {
+            let datas = {
+                id: user.id
+              }
+              body.push(
+                datas
+            )
+            })
+        createUsers(body)
+        
     } catch (error) {
         console.error(error)
     }
@@ -17,6 +26,21 @@ async function getUsers() {
         const res = await fetch(`${location.origin}/api/users`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
+        })
+        datas = await res.json()
+    } catch (error) {
+        console.error(error)
+    }
+    return datas
+}
+
+async function createUsers(body) {
+    let datas = []
+    try {
+        const res = await fetch(`http://localhost:3000/api/usersApi`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({data: body})
         })
         datas = await res.json()
     } catch (error) {
@@ -39,64 +63,50 @@ async function getUser(id) {
     return datas
 }
 
-async function createUser(body) {
-    let datas = []
-    try {
-        const res = await fetch(`${location.origin}/api/users`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({prenom: body.prenom, nom: body.nom, email: body.email})
-        })
-        datas = await res.json()
-    } catch (error) {
-        console.error(error)
-    }
-    return datas
-}
+// async function createUser(body) {
+//     let datas = []
+//     try {
+//         const res = await fetch(`${location.origin}/api/users`, {
+//             method: 'POST',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify({prenom: body.prenom, nom: body.nom, email: body.email})
+//         })
+//         datas = await res.json()
+//     } catch (error) {
+//         console.error(error)
+//     }
+//     return datas
+// }
 
-async function createUsers(body) {
-    let datas = []
-    try {
-        const res = await fetch(`http://localhost:3000/api/usersApi`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({data: body.data})
-        })
-        datas = await res.json()
-    } catch (error) {
-        console.error(error)
-    }
-    return datas
-}
 
-async function updateUser(id, body) {
-    let datas = []
-    try {
-        const res = await fetch(`${location.origin}/api/users/${id}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({prenom: body.prenom, nom: body.nom, email: body.email})
-        })
-        datas = await res.json()
-    } catch (error) {
-        console.error(error)
-    }
-    return datas
-}
+// async function updateUser(id, body) {
+//     let datas = []
+//     try {
+//         const res = await fetch(`${location.origin}/api/users/${id}`, {
+//             method: 'PATCH',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify({prenom: body.prenom, nom: body.nom, email: body.email})
+//         })
+//         datas = await res.json()
+//     } catch (error) {
+//         console.error(error)
+//     }
+//     return datas
+// }
 
-async function deleteUser(id) {
-    let datas = []
-    try {
-        const res = await fetch(`${location.origin}/api/users/${id}`, {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
-        })
-        datas = await res.json()
-    } catch (error) {
-        console.error(error)
-    }
-    return datas
-}
+// async function deleteUser(id) {
+//     let datas = []
+//     try {
+//         const res = await fetch(`${location.origin}/api/users/${id}`, {
+//             method: 'DELETE',
+//             headers: { 'Content-Type': 'application/json' },
+//         })
+//         datas = await res.json()
+//     } catch (error) {
+//         console.error(error)
+//     }
+//     return datas
+// }
 
 async function getMaterials() {
     let datas = []
@@ -272,4 +282,4 @@ async function sendMailRelanceUser(body) {
     return email
 }
 
-export { getUsersApi, getUsers, getUser, createUser, createUsers, updateUser, deleteUser, getMaterials, getMaterial, createMaterial, updateMaterial, deleteMaterial, getRentals, getRental, createRental, updateRental, deleteRental, sendMailUser, sendMailRelanceUser}
+export { getUsersApi, getUsers, getUser, createUsers, getMaterials, getMaterial, createMaterial, updateMaterial, deleteMaterial, getRentals, getRental, createRental, updateRental, deleteRental, sendMailUser, sendMailRelanceUser}

@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
 import { computed, onBeforeMount, onMounted, ref } from 'vue';
-import { getUsersApi, createUsers } from '../utils/api';
+import { getUsersApi } from '../utils/api';
 import { useUsersStore } from '../store/users';
 
 const users = ref([])
@@ -27,24 +27,5 @@ users.value = await getUsersApi()
 await useUsers.$patch({
   users: users.value
 })
-
-
-
-
-let body = {
-  data: []
-}
-
-users.value.forEach(user => {
-  let datas = {
-      id: user.id
-    }
-    body.data.push(
-      datas
-  )
-  })
-console.log(body)
-
-createUsers(body)
 
 </script>

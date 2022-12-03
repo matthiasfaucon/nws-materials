@@ -16,13 +16,13 @@
                 <Nuxt-link to="/users">
                     <p>Utilisateurs</p>
                 </Nuxt-link>
-                <ul>
+                <!-- <ul>
                     <li>
                         <Nuxt-link to="/users/add">
                             <p>Ajouter un utilisateur</p>
                         </Nuxt-link>
                     </li>
-                </ul>
+                </ul> -->
             </li>
             <li>
                 <Nuxt-link to="/materials">

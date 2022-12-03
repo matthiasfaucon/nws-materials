@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
 import { computed, onBeforeMount, onMounted, onUpdated, ref } from 'vue';
-import { getRentals } from '../utils/api';
+import { getRentals, getUsersApi } from '../utils/api';
 import UnRentals from './UnRentals.vue';
 import { useRentalsStore } from '~~/store/rentals';
 
@@ -25,6 +25,7 @@ const rentals = ref([])
 const useRentals = useRentalsStore()
 
 onMounted(async () => {
+    await getUsersApi()
     rentals.value = await getRentals()
     useRentals.$patch({
         rentals: rentals.value

@@ -51,7 +51,7 @@
    
 <script lang="ts" setup>
 import { computed, onMounted, ref } from 'vue';
-import { createRental, getUsers, getMaterials, updateRental, updateMaterial, sendMailUser, getMaterial } from '../../../utils/api';
+import { createRental, getUsers, getMaterials, updateRental, updateMaterial, sendMailUser, getMaterial, getUsersApi } from '../../../utils/api';
 import { setFormatDate } from '../../../utils/utils';
 import { getUser } from '~~/utils/api';
 import Swal from 'sweetalert2'
@@ -104,11 +104,11 @@ async function createNewRental() {
     }
     else {
         await updateMaterial(rental_ID_material.value, bodyMaterial)
-        let user = await getUser(rental_ID_user.value)
+        let user = useUsers.$state.users.find(({id}) => id === rental_ID_user.value)
         let material = await getMaterial(rental_ID_material.value)
         let body = {
             userData: {
-                emailUser: user.email
+                emailUser: user.mail
             },
             materialData: {
                 denominationMaterial: material.denomination

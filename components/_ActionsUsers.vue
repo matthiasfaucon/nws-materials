@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="is-flex is-vcentered">
             <nuxt-link @click="deleteSelectedUser(user.id)">
                 <a class="button is-small is-link">Supprimer</a>
@@ -12,7 +12,7 @@
 <script lang="ts" setup>
 import Swal from 'sweetalert2';
 import { useUsersStore } from '~~/store/users';
-import { deleteUser, getUsers } from '../utils/api'
+// import { deleteUser, getUsers } from '../utils/api'
 const props = defineProps(['user'])
 
 const useUsers = useUsersStore()
@@ -41,4 +41,4 @@ async function deleteSelectedUser(id){
         users: users.value
     })
 }
-</script>
+</script> -->

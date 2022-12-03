@@ -13,6 +13,7 @@
 
 <script setup>
 import { setFormatDate  } from "../utils/utils";
+import { getUsersApi } from '../utils/api';
 import { useUsersStore } from '../store/users';
 const props = defineProps(['rental'])
 let beginingRentals = setFormatDate(new Date(props.rental.beginingRentals))

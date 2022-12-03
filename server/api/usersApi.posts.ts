@@ -5,6 +5,7 @@ import { createError, defineEventHandler } from 'h3';
 
 
 export default defineEventHandler(async (event) => {
+  console.log(await readBody(event))
     const { data } = await readBody(event)
     const result = await prisma.users.createMany({
         data,
