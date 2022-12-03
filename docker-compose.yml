@@ -7,6 +7,10 @@ services:
     environment:
       DATABASE_URL: "${DATABASE_URL}" # URL DB
       GMAIL_APP_PASSWORD: "${GMAIL_APP_PASSWORD}"
+      WAIT_HOSTS: db:3306
+      WAIT_HOSTS_TIMEOUT: 300
+      WAIT_SLEEP_INTERVAL: 30
+      WAIT_HOST_CONNECT_TIMEOUT: 30
 
   db:
     image: mysql
