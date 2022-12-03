@@ -27,6 +27,10 @@ jobs:
         with:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
       - run: |
           npm i
           npm run build
