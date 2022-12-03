@@ -36,6 +36,10 @@ jobs:
           npm run build
   build-docker:
     needs: [build]
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
     runs-on: ubuntu-latest
     steps:
       - name: Login to Github Container Registry
