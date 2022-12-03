@@ -13,6 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
+        with:
+          node-version: 18
       - name: Cache node_modules
         id: cache-node_modules
         uses: actions/cache@v3
@@ -26,7 +28,8 @@ jobs:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run: |
-          npm ci
+          node --version
+          npm i
           npm run build
   build-docker:
     needs: [build]
@@ -67,27 +70,9 @@ jobs:
           path: .nuxt
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run: |
-          docker compose up --build -d
-          npx prisma migrate deploy 
-  test:
-    needs: [prisma]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      - name: Cache node_modules
-        id: cache-node_modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json') }}
-      - name: Cache .nuxt
-        id: cache-nuxt
-        uses: actions/cache@v3
-        with:
-          path: .nuxt
-          key: ${{ runner.os }}-nuxt-${{ github.run_id }}
-      - run:
-          npm run test
-  
+          docker compose up -d --build
+          docker exec nws-materials-app-1 sh -c "docker wait nws-materials-db-1"
+          docker exec nws-materials-app-1 sh -c "npx prisma generate"
+          docker exec nws-materials-app-1 sh -c "npx prisma db push"
+          docker exec nws-materials-app-1 sh -c "npx prisma db seed"
+          docker exec nws-materials-app-1 sh -c "npm run test"

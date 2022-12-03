@@ -1,28 +1,25 @@
 version: '3.8'
 services:
   app:
-    depends_on: [db]
     build: 
       dockerfile: Dockerfile
     environment:
-      DATABASE_URL: "${DATABASE_URL}" # URL DB
+      DATABASE_URL: "${DATABASE_URL_TEST}" # URL DB
       GMAIL_APP_PASSWORD: "${GMAIL_APP_PASSWORD}"
-      WAIT_HOSTS: db
 
   db:
     image: mysql
     restart: always
     environment:
       MYSQL_DATABASE: materiels
-      MYSQL_USER: nws_app
-      MYSQL_PASSWORD: "${DB_PASSWORD}"
-      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_USER: mkqdgnsdglxxgc98ftdq
+      MYSQL_PASSWORD: "${DB_PASSWORD_TEST}"
+      MYSQL_RANDOM_ROOT_PASSWORD: true
     ports:
       - 3306:3306
     volumes:
       - mysqldb-data:/var/lib/mysql
   reverse-proxy:
-    depends_on: [app]
     image: caddy
     restart: always
     ports:
@@ -31,8 +28,8 @@ services:
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy-data:/data
+
   phpmyadmin:
-    depends_on: [reverse-proxy]
     image: phpmyadmin
     restart: always
     environment:

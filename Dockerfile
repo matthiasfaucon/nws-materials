@@ -1,4 +1,4 @@
-FROM node:16 AS nws-material
+FROM node:18 AS nws-material
 
 WORKDIR /app
 
