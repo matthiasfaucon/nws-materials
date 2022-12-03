@@ -44,7 +44,6 @@ jobs:
           registry: ghcr.io # lien pour registry github
           username: ${{ github.actor }} # actor github
           password: ${{ secrets.GITHUB_TOKEN }} # Génère un token de Github
-      - run: "npx prisma generate"
       - name: Build and push to Github Repository
         uses: docker/build-push-action@v3
         with:
