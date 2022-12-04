@@ -127,7 +127,8 @@ describe('Should test the CRUD for the rentals', async () => {
     let userId = Number(faker.finance.amount(1, (await users).length, 0))
     let beginingRentals = faker.date.past()
     let endingRentals = faker.date.future()
-    let rentalCreated = await updateRental(6, {materialsId: materialsId, userId: userId, beginingRentals: beginingRentals, endingRentals: endingRentals})
+    let rentalCreated = await createRental({materialsId: materialsId, userId: userId, beginingRentals: beginingRentals, endingRentals: endingRentals})
+    console.log(rentalCreated)
     expect(rentalCreated).toContain({
       materialsId: materialsId,
       userId: userId
