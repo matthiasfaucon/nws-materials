@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy in prod
 
 on:
   workflow_run:
