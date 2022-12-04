@@ -22,7 +22,7 @@ jobs:
       
       # Mode sale
       - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd materiels_nws && git pull"
-      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd materiels_nws && docker compose up -d"
+      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd materiels_nws && docker compose up -d --build"
 
       # Mode propre
       # - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker pull ghcr.io/matthiasfaucon/nws-material:latest"
