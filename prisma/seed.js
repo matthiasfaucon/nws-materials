@@ -1,14 +1,15 @@
 import { PrismaClient } from '@prisma/client'
 import { faker } from '@faker-js/faker';
-import { getUsersApi } from '../utils/api';
 const prisma = new PrismaClient()
 
 async function main() {
     
-    let resultUsers = {}
+    
     let resultMaterials = {}
     // let resultRentals = {}
-    resultUsers = await getUsersApi()
+
+    getUsersApi()
+    
     for (let i = 0; i < Math.round(Math.random() * 30 + 20); i++){
         const createdAt = faker.date.past()
         const updatedAt = faker.date.between(createdAt, new Date())
@@ -33,6 +34,44 @@ async function main() {
     //         }
     //     })
     // }
-    return {resultMaterials, resultUsers}
+    return {resultMaterials}
 }
+
+async function getUsersApi() {
+    let body  = []
+    let resultUsers  = {}
+    try {
+        const res = await fetch(`http://localhost:3000/api/usersApi`)
+        resultUsers = await res.json()
+        resultUsers.forEach(user => {
+            let datas = {
+                id: user.id
+              }
+              body.push(
+                datas
+            )
+            })
+        createUsers(body)
+        
+    } catch (error) {
+        console.error(error)
+    }
+    return resultUsers
+}
+
+async function createUsers(body) {
+    let resultUsers  = {}
+    try {
+        const res = await fetch(`http://localhost:3000/api/usersApi`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({data: body})
+        })
+        resultUsers = await res.json()
+    } catch (error) {
+        console.error(error)
+    }
+    return resultUsers
+}
+
 main()
