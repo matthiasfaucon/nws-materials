@@ -4,11 +4,10 @@ const prisma = new PrismaClient()
 import { faker } from '@faker-js/faker';
 
 export default defineEventHandler(async (event) => {
-    const { denomination, quantite } = await readBody(event)
+    const { denomination } = await readBody(event)
     const result = await prisma.materials.create({
         data: {
             denomination: denomination,
-            quantite: quantite
         }
     })
     return result

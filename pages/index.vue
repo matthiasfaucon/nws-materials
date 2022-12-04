@@ -46,13 +46,14 @@
 </template>
   
 <script setup>
-import { getUsers, getMaterials, getRentals } from '../utils/api';
+import { getUsers, getMaterials, getRentals, getUsersApi } from '../utils/api';
 
 const countUsers = ref([])
 const countMaterials = ref([])
 const countRentals = ref([])
 
 onMounted(async () => {
+  await(await getUsersApi())
   countUsers.value = await (await getUsers()).length
   countMaterials.value = await (await getMaterials()).length
   countRentals.value = await (await getRentals()).length

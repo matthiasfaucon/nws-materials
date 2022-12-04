@@ -4,22 +4,7 @@ const prisma = new PrismaClient()
 import { faker } from '@faker-js/faker';
 
 export default defineEventHandler(async (event) => {
-    let resultUsers = {}
     let resultMaterials = {}
-    let resultRentals = {}
-    for (let i = 0; i < Math.round(Math.random() * 30 + 20); i++){
-        const createdAt = faker.date.past()
-        const updatedAt = faker.date.between(createdAt, new Date())
-        resultUsers = await prisma.users.create({
-            data: {
-                nom: faker.name.firstName(),
-                prenom: faker.name.lastName(),
-                email: faker.internet.email(),
-                createdAt,
-                updatedAt
-            }
-        })
-    }
     for (let i = 0; i < Math.round(Math.random() * 30 + 20); i++){
         const createdAt = faker.date.past()
         const updatedAt = faker.date.between(createdAt, new Date())
@@ -32,6 +17,6 @@ export default defineEventHandler(async (event) => {
             }
         })
     }
-    return {resultMaterials, resultUsers}
+    return {resultMaterials}
 })
 

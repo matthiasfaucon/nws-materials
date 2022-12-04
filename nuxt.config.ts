@@ -15,4 +15,6 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
   ],
+  routes: { '/': { prerender: true }, '/*': { cors: true } },
+  
 })

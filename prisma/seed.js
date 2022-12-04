@@ -4,29 +4,18 @@ const prisma = new PrismaClient()
 
 async function main() {
     
-    let resultUsers = {}
+    
     let resultMaterials = {}
-    let resultRentals = {}
-    for (let i = 0; i < Math.round(Math.random() * 30 + 20); i++){
-        const createdAt = faker.date.past()
-        const updatedAt = faker.date.between(createdAt, new Date())
-        resultUsers = await prisma.users.create({
-            data: {
-                nom: faker.name.firstName(),
-                prenom: faker.name.lastName(),
-                email: faker.internet.email(),
-                createdAt,
-                updatedAt
-            }
-        })
-    }
+    // let resultRentals = {}
+
+    getUsersApi()
+    
     for (let i = 0; i < Math.round(Math.random() * 30 + 20); i++){
         const createdAt = faker.date.past()
         const updatedAt = faker.date.between(createdAt, new Date())
         resultMaterials = await prisma.materials.create({
             data: {
                 denomination: faker.commerce.productName(),
-                quantite: Number(faker.finance.amount(1, 50, 0)),
                 createdAt,
                 updatedAt
             }
@@ -44,6 +33,44 @@ async function main() {
     //         }
     //     })
     // }
-    return {resultMaterials, resultUsers}
+    return {resultMaterials}
 }
+
+async function getUsersApi() {
+    let body  = []
+    let resultUsers  = {}
+    try {
+        const res = await fetch(`http://localhost:3000/api/usersApi`)
+        resultUsers = await res.json()
+        resultUsers.forEach(user => {
+            let datas = {
+                id: user.id
+              }
+              body.push(
+                datas
+            )
+            })
+        createUsers(body)
+        
+    } catch (error) {
+        console.error(error)
+    }
+    return resultUsers
+}
+
+async function createUsers(body) {
+    let resultUsers  = {}
+    try {
+        const res = await fetch(`http://localhost:3000/api/usersApi`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({data: body})
+        })
+        resultUsers = await res.json()
+    } catch (error) {
+        console.error(error)
+    }
+    return resultUsers
+}
+
 main()

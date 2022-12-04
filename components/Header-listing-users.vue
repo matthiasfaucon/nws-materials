@@ -7,7 +7,7 @@
             <th class="is-vcentered" width="10%">E-mail</th>
             <!-- <th class="is-vcentered">Date création</th>
             <th class="is-vcentered">Date modification</th> -->
-            <th class="is-vcentered" width="10%">Actions</th>
+            <!-- <th class="is-vcentered" width="10%">Actions</th> -->
         </tr>
     </thead>
 </template>

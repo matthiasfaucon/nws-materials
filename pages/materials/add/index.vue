@@ -22,9 +22,9 @@
                         <div class="control">
                             <input class="input is-rounded" type="text" v-model="material_denomination">
                         </div>
-                        <div class="control mt-4">
+                        <!-- <div class="control mt-4">
                             <input class="input is-rounded" type="text" v-model="material_quantite">
-                        </div>
+                        </div> -->
                         <button class="button is-link is-rounded mt-5" @click=createNewMaterial()>Ajouter</button>
                     </div>
                 </div>
@@ -40,12 +40,12 @@ import { createMaterial } from '../../../utils/api';
 import { create } from 'domain';
 
 const material_denomination = ref('denomination')
-const material_quantite = ref(20)
+// const material_quantite = ref(20)
 
 async function createNewMaterial() {
     let body = {
         denomination: material_denomination.value,
-        quantite: material_quantite.value,
+        // quantite: material_quantite.value,
     }
     let createMaterialPromise = await createMaterial(body)
     if (createMaterialPromise.statusCode === 500) {

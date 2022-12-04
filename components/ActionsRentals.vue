@@ -16,6 +16,7 @@
 import { deleteRental, updateMaterial, getRentals, sendMailRelanceUser } from '../utils/api'
 import { useRentalsStore } from '../store/rentals';
 import Swal from 'sweetalert2';
+import { useUsersStore } from '../store/users';
 
 const props = defineProps(['rental'])
 const useRentals = useRentalsStore()
@@ -51,9 +52,11 @@ async function deleteSelectedRentals(rental) {
 }
 
 async function relanceSelectedrental(rental) {
+  const useUsers = useUsersStore()
+  let userTemp = useUsers.$state.users.find(({id}) => id === rental.user.id)
   let body = {
     userData: {
-      emailUser: rental.user.email
+      emailUser: userTemp.mail
     },
     materialData: {
       denominationMaterial: rental.materials.denomination
