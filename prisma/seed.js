@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { faker } from '@faker-js/faker';
-import { getUsersApi } from '@/utils/api';
+import { getUsersApi } from '../utils/api';
 const prisma = new PrismaClient()
 
 async function main() {
