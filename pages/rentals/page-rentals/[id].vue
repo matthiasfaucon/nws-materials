@@ -28,7 +28,7 @@
                             </div>
                             <div class="select is-rounded">
                                 <select v-model="rental_ID_user">
-                                    <option :selected="user.id === rental_ID_user" v-for="user in (useUsers/$s)"
+                                    <option :selected="user.id === rental_ID_user" v-for="user in useUsers"
                                         :value="user.id">{{
                                                 `${user.nom} ${user.prenom}`
                                         }}</option>
