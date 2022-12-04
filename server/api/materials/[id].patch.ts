@@ -5,19 +5,17 @@ const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
     const { id } = getRouterParams(event)
-    const { denomination, quantite, availability } = await readBody(event)
+    const { denomination, availability } = await readBody(event)
     
-    if (denomination && quantite) {
+    if (denomination) {
         let material = {
             denomination: denomination,
-            quantite : quantite,
         }
                 
         const result = await prisma.materials.upsert({
             select: {
                 id: true,
                 denomination: true,
-                quantite: true,
                 availability: true
             },
             where: {
@@ -25,7 +23,6 @@ export default defineEventHandler(async (event) => {
             },
             update: {
                 denomination: denomination,
-                quantite : quantite,
                 availability: availability
             },
             create: material
@@ -33,7 +30,7 @@ export default defineEventHandler(async (event) => {
         return result
     }
 
-    else if (availability && !denomination && !quantite){
+    else if (availability && !denomination){
 
         const result = await prisma.materials.update({
             where: {

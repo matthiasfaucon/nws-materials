@@ -75,8 +75,8 @@ jobs:
           key: ${{ runner.os }}-nuxt-${{ github.run_id }}
       - run: |
           docker compose up -d --build
-          docker exec nws-materials-app-1 sh -c "docker wait nws-materials-db-1"
+          sleep 10
           docker exec nws-materials-app-1 sh -c "npx prisma generate"
-          docker exec nws-materials-app-1 sh -c "npx prisma db push"
+          docker exec nws-materials-app-1 sh -c "npx prisma db push --accept-data-loss"
           docker exec nws-materials-app-1 sh -c "npx prisma db seed"
           docker exec nws-materials-app-1 sh -c "npm run test"
