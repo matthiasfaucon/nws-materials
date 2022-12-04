@@ -2,7 +2,7 @@ async function getUsersApi() {
     let datas = []
     let body  = []
     try {
-        const res = await fetch(`http://localhost:3000/api/usersApi`)
+        const res = await fetch(`${location.origin}/api/usersApi`)
         datas = await res.json()
         datas.forEach(user => {
             let datas = {
@@ -37,7 +37,7 @@ async function getUsers() {
 async function createUsers(body) {
     let datas = []
     try {
-        const res = await fetch(`http://localhost:3000/api/usersApi`, {
+        const res = await fetch(`${location.origin}/api/usersApi`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({data: body})
