@@ -16,7 +16,6 @@ async function main() {
         resultMaterials = await prisma.materials.create({
             data: {
                 denomination: faker.commerce.productName(),
-                // quantite: Number(faker.finance.amount(1, 50, 0)),
                 createdAt,
                 updatedAt
             }

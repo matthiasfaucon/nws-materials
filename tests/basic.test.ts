@@ -79,24 +79,20 @@ describe('Should test the CRUD for the materials', async () => {
   })
 
   it('Should create one material', async () => {
-    let quantite = Number(faker.finance.amount(1, 50, 0))
     let denomination = faker.commerce.productName()
-    let materialCreated = await createMaterial({denomination: denomination, quantite: quantite})
+    let materialCreated = await createMaterial({denomination: denomination})
     expect(materialCreated).toContain({
-      denomination: denomination, 
-      quantite: quantite
+      denomination: denomination
     })
   })
 
   it('Should update one material', async () => {
-    let quantite = Number(faker.finance.amount(1, 50, 0))
     let denomination = faker.commerce.productName()
     let material = await getMaterial(6)
-    let materialUpdated = await updateMaterial(6, {denomination: denomination, quantite: quantite})
+    let materialUpdated = await updateMaterial(6, {denomination: denomination})
     expect(materialUpdated).not.toBe(material)
     expect(materialUpdated).toContain({
-      denomination: denomination, 
-      quantite: quantite,
+      denomination: denomination,
     })
   })
 

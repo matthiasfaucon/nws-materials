@@ -16,8 +16,7 @@ model Users {
 
 model Materials {
   id           Int           @id @default(autoincrement())
-  denomination String?       @unique
-  // quantite     Int?     
+  denomination String?       @unique  
   availability Availability? @default(AVAILABLE)
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
