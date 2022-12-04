@@ -1,7 +1,8 @@
 name: Runs All Unit tests
 run-name: Build and Tests
 
-on: [push]
+on: [push, pull_request]
+
 env:
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
