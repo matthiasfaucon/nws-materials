@@ -52,11 +52,16 @@
 
 <script lang="ts" setup>import Swal from 'sweetalert2';
 import { computed, onMounted, ref } from 'vue';
-import { getRental, updateRental, getMaterials, getUsers, updateMaterial, getRentals } from '../../../utils/api';
+import { getRental, updateRental, getMaterials, updateMaterial, getUsersApi } from '../../../utils/api';
 import { setFormatDate } from '../../../utils/utils';
 import { useUsersStore } from '@/store/users';
 
-const useUsers = useUsersStore()
+const users = ref([])
+  const useUsers = useUsersStore()
+  users.value = await (await getUsersApi())
+  await useUsers.$patch({
+    users: users.value
+  })
 
 const route = useRoute()
 const id = route.params.id
