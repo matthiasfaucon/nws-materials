@@ -1,5 +1,5 @@
 <template>
-    <aside class="menu is-hidden-mobile">
+    <aside class="menu is-hidden-mobile is-hidden-tablet">
         <ul class="menu-list">
             <li>
                 <Nuxt-link to="/">

@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onBeforeMount, onMounted, onUpdated, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { getRentals, getUsersApi } from '../utils/api';
 import UnRentals from './UnRentals.vue';
 import { useRentalsStore } from '~~/store/rentals';
