@@ -90,6 +90,8 @@ describe('Should test the CRUD for the materials', async () => {
     let denomination = faker.commerce.productName()
     let material = await getMaterial(6)
     let materialUpdated = await updateMaterial(6, {denomination: denomination})
+    console.log(material)
+    console.log(materialUpdated)
     expect(materialUpdated).not.toBe(material)
     expect(materialUpdated).toContain({
       denomination: denomination,
