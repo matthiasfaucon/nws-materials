@@ -47,7 +47,6 @@
   
 <script setup>
 import { getUsers, getMaterials, getRentals, getUsersApi } from '../utils/api';
-import { getUsersApi } from '../utils/api';
 import { useUsersStore } from '../store/users';
 
 const countUsers = ref([])
