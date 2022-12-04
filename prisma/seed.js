@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { faker } from '@faker-js/faker';
+import { getUsersApi } from '~~/utils/api';
 const prisma = new PrismaClient()
 
 async function main() {
@@ -7,19 +8,7 @@ async function main() {
     let resultUsers = {}
     let resultMaterials = {}
     // let resultRentals = {}
-    // for (let i = 0; i < Math.round(Math.random() * 30 + 20); i++){
-    //     const createdAt = faker.date.past()
-    //     const updatedAt = faker.date.between(createdAt, new Date())
-    //     resultUsers = await prisma.users.create({
-    //         data: {
-    //             nom: faker.name.firstName(),
-    //             prenom: faker.name.lastName(),
-    //             email: faker.internet.email(),
-    //             createdAt,
-    //             updatedAt
-    //         }
-    //     })
-    // }
+    resultUsers = await getUsersApi()
     for (let i = 0; i < Math.round(Math.random() * 30 + 20); i++){
         const createdAt = faker.date.past()
         const updatedAt = faker.date.between(createdAt, new Date())
