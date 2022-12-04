@@ -26,4 +26,4 @@ jobs:
 
       # Mode propre
       - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls"
-      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd materiels_nws && docker compose pull && docker compose up -d && docker image prune -f"
+      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd materiels_nws && git pull origin release && docker compose pull && docker compose up -d && docker image prune -f"
