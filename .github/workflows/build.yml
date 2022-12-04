@@ -77,6 +77,7 @@ jobs:
           sleep 5
           docker exec nws-materials-app-1 sh -c "npx prisma generate"
           docker exec nws-materials-app-1 sh -c "npx prisma migrate reset -f"
+          sleep 5
           docker exec nws-materials-app-1 sh -c "npx prisma db push"
           docker exec nws-materials-app-1 sh -c "npx prisma db seed"
           docker exec nws-materials-app-1 sh -c "npm run test"
