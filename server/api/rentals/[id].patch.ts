@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { defineEventHandler, getRouterParams, readBody } from 'h3'
+import { getMaterial } from '~~/utils/api'
 
 const prisma = new PrismaClient()
 
@@ -23,7 +24,14 @@ export default defineEventHandler(async (event) => {
         }
     })
     let result = []
-    if (resultUser && resultMaterial.availability === "AVAILABLE") {
+    const currentRental = await prisma.rentals.findUniqueOrThrow({
+        where: {
+            id: Number(id)
+        }
+    })
+    console.log(currentRental)
+    console.log(resultMaterial.id)
+    if (resultUser && resultMaterial.availability === "AVAILABLE" || currentRental.materialsId === resultMaterial.id) {
         result = await prisma.rentals.upsert({
             select: {
                 id: true,

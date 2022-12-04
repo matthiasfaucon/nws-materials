@@ -39,7 +39,7 @@
 <script lang="ts" setup>
 import Swal from 'sweetalert2';
 import { computed, onMounted, ref } from 'vue';
-import { createUser } from '../../../utils/api';
+// import { createUser } from '../../../utils/api';
 
 const user_nom = ref('nom')
 const user_prenom = ref('prénom')
@@ -52,7 +52,7 @@ async function createSelectedUser() {
         email: user_email.value
     }
 
-    let createUserPromise = await createUser(body)
+    // let createUserPromise = await createUser(body)
     if (createUserPromise.statusCode === 500) {
         Swal.fire({
             title: 'Impossible de créer l\'utilisateur',

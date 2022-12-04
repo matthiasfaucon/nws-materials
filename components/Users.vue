@@ -17,13 +17,13 @@
 
 <script lang="ts" setup>
 import { computed, onBeforeMount, onMounted, ref } from 'vue';
-import { getUsers, sendMailUser } from '../utils/api';
+import { getUsersApi } from '../utils/api';
 import { useUsersStore } from '../store/users';
 
 const users = ref([])
 const useUsers = useUsersStore()
 
-users.value = await getUsers()
+users.value = await getUsersApi()
 await useUsers.$patch({
   users: users.value
 })

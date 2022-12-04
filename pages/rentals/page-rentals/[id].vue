@@ -28,7 +28,7 @@
                             </div>
                             <div class="select is-rounded">
                                 <select v-model="rental_ID_user">
-                                    <option :selected="user.id === rental_ID_user" v-for="user in users"
+                                    <option :selected="user.id === rental_ID_user" v-for="user in (useUsers/$s)"
                                         :value="user.id">{{
                                                 `${user.nom} ${user.prenom}`
                                         }}</option>
@@ -54,6 +54,9 @@
 import { computed, onMounted, ref } from 'vue';
 import { getRental, updateRental, getMaterials, getUsers, updateMaterial, getRentals } from '../../../utils/api';
 import { setFormatDate } from '../../../utils/utils';
+import { useUsersStore } from '@/store/users';
+
+const useUsers = useUsersStore()
 
 const route = useRoute()
 const id = route.params.id
@@ -66,11 +69,9 @@ const rental_ID_user = ref('')
 const beginingRentals = ref(new Date())
 const endingRentals = ref(new Date())
 const materials = ref([])
-const users = ref([])
 onMounted(async () => {
     rental.value = await getRental(id)
     materials.value = await getMaterials()
-    users.value = await getUsers()
     rental_material.value = rental.value.materials.denomination
     rental_ID_material.value = rental.value.materials.id
     rental_user.value = rental.value.user.nom + " " + rental.value.user.prenom
