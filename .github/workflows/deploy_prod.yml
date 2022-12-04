@@ -21,7 +21,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY }}
       
       # Mode sale
-      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "git pull"
+      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd materiels_nws && git pull"
       - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd materiels_nws && docker compose up -d"
 
       # Mode propre
