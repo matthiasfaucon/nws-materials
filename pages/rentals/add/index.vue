@@ -52,14 +52,10 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from 'vue';
 import { createRental, getUsers, getMaterials, updateRental, updateMaterial, sendMailUser, getMaterial, getUsersApi } from '../../../utils/api';
-import { setFormatDate } from '../../../utils/utils';
-import { getUser } from '~~/utils/api';
 import Swal from 'sweetalert2'
 import { useUsersStore } from '@/store/users';
-import { create } from 'domain';
 
-const route = useRoute()
-const id = route.params.id
+
 const useUsers = useUsersStore()
 
 const users = ref([])
@@ -78,7 +74,6 @@ const endingRentals = ref(new Date().toISOString().split('T')[0])
 const materials = ref([])
 onMounted(async () => {
     materials.value = await getMaterials()
-    // users.value = await getUsers()
 })
 
 

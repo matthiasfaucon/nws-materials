@@ -21,13 +21,6 @@
                             <Nuxt-link to="/users">
                                 <p>Utilisateurs</p>
                             </Nuxt-link>
-                            <ul>
-                                <li>
-                                    <Nuxt-link to="/users/add">
-                                        <p>Ajouter un utilisateur</p>
-                                    </Nuxt-link>
-                                </li>
-                            </ul>
                         </li>
                         <li>
                             <Nuxt-link to="/materials">
