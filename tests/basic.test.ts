@@ -149,7 +149,6 @@ describe('Should test the CRUD for the rentals', async () => {
     expectTypeOf(rental).toBeObject()
   })
 
-
   it('Should update one rental', async () => {
     let rental = await getRental(1)
     let materials = getMaterials()
