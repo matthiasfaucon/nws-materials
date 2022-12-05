@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar is-white is-hidden-desktop">
+    <nav class="navbar is-white is-hidden-desktop is-hidden-tablet">
         <div class="container">
             <div class="navbar-brand">
                 <Nuxt-link to="/">

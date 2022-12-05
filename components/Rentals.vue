@@ -24,12 +24,11 @@ import { useRentalsStore } from '~~/store/rentals';
 const rentals = ref([])
 const useRentals = useRentalsStore()
 
+rentals.value = await getRentals()
+useRentals.$patch({
+    rentals: rentals.value
+})
 onMounted(async () => {
-    await getUsersApi()
-    rentals.value = await getRentals()
-    useRentals.$patch({
-        rentals: rentals.value
-    })
 })
 
 </script>
