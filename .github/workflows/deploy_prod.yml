@@ -26,5 +26,5 @@ jobs:
 
       # Mode propre
       - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker pull ghcr.io/matthiasfaucon/nws-material:latest"
-      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd materiels_nws && docker compose up -d --build"
+      - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd materiels_nws && docker compose up -d --build --force-recreate"
       - run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker image prune -f"
