@@ -158,6 +158,7 @@ describe('Should test the CRUD for the rentals', async () => {
     let beginingRentals = faker.date.past()
     let endingRentals = faker.date.future()
     let rentalUpdated = await updateRental(1, {materialsId: materialsId, userId: userId, beginingRentals: beginingRentals, endingRentals: endingRentals})
+    console.log(rentalUpdated)
     expect(rentalUpdated).not.toBe(rental)
     expect(rentalUpdated).toContain({
       materialsId: materialsId, 
