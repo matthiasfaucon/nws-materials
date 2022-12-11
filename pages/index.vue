@@ -47,17 +47,26 @@
   
 <script setup>
 import { getUsers, getMaterials, getRentals, getUsersApi } from '../utils/api';
+import { useUsersStore } from '../store/users';
 
 const countUsers = ref([])
 const countMaterials = ref([])
 const countRentals = ref([])
 
 onMounted(async () => {
-  await(await getUsersApi())
+  const users = ref([])
+  const useUsers = useUsersStore()
+  users.value = await (await getUsersApi())
+  await useUsers.$patch({
+    users: users.value
+  })
   countUsers.value = await (await getUsers()).length
   countMaterials.value = await (await getMaterials()).length
   countRentals.value = await (await getRentals()).length
 })
+
+
+
 
 </script>
   
