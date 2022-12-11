@@ -2,7 +2,7 @@ name: Deploy in prod
 on:
   workflow_run:
     workflows: [Runs All Unit tests]
-    branches: [release, master]
+    branches: [release]
     types:
       - completed    
 jobs:
