@@ -22,11 +22,10 @@
                         <div class="control">
                             <input class="input is-rounded" type="text" v-model="material_denomination">
                         </div>
-                        <div class="control mt-4">
+                        <!-- <div class="control mt-4">
                             <input class="input is-rounded" type="text" v-model="material_quantite">
-                        </div>
-                        <button class="button is-link is-rounded mt-5" @click=updateSelectedMateriel()>Mettre à
-                            jour</button>
+                        </div> -->
+                        <button class="button is-link is-rounded mt-5" @click=updateSelectedMateriel()>Mettre à jour</button>
                     </div>
                 </div>
             </div>
