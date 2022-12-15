@@ -4,7 +4,7 @@
       <div class="container">
         <div class="navbar-brand">
           <p class="navbar-item brand-text">
-            NWS Admin
+            NWS UwU
           </p>
         </div>
       </div>
